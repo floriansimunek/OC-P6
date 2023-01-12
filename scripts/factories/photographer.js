@@ -20,21 +20,30 @@ function photographerFactory(data) {
 
 		const location = document.createElement("p");
 		location.textContent = city + ", " + country;
+		location.setAttribute("aria-label", "Localisation de " + name);
 		location.classList.add("location");
 
 		const slogan = document.createElement("p");
 		slogan.textContent = tagline;
+		slogan.setAttribute("aria-label", "Slogan de " + name);
 		slogan.classList.add("slogan");
 
 		const tjm = document.createElement("p");
 		tjm.textContent = price + "€/jour";
+		tjm.setAttribute("aria-label", "Prix journalier de " + name);
 		tjm.classList.add("price");
+
+		const photographerInformations = document.createElement("div");
+		photographerInformations.classList.add("photographer_informations");
+		photographerInformations.setAttribute("aria-label", "Informations de " + name);
+		photographerInformations.setAttribute("role", "contentinfo");
+		photographerInformations.appendChild(location);
+		photographerInformations.appendChild(slogan);
+		photographerInformations.appendChild(tjm);
 
 		article.appendChild(photographerLink);
 		article.appendChild(h2);
-		article.appendChild(location);
-		article.appendChild(slogan);
-		article.appendChild(tjm);
+		article.appendChild(photographerInformations);
 
 		return article;
 	}
