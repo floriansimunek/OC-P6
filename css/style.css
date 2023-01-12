@@ -27,7 +27,7 @@ h1 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 70px;
-	margin-top: 50px;
+	margin-top: 110px;
 }
 
 .photographer_section article {
@@ -41,7 +41,7 @@ h1 {
 .photographer_section article h2 {
 	color: #d3573c;
 	font-size: 36px;
-	margin: 10px 0;
+	margin: 15px 0 10px;
 }
 
 .photographer_section article img {
@@ -52,13 +52,20 @@ h1 {
 }
 
 .photographer_section article p {
-	margin: 5px 0;
+	margin: 1.5px 0;
 }
 
-.photographer_section article p:first-of-type {
+.photographer_section article .location {
 	color: #901c1c;
+	font-size: 13px;
 }
 
-.photographer_section article p:last-of-type {
-	color: #525252;
+.photographer_section article .slogan {
+	color: black;
+	font-size: 10px;
+}
+
+.photographer_section article .price {
+	color: #757575;
+	font-size: 9px;
 }
