@@ -9,7 +9,11 @@ function photographerFactory(data) {
 		const img = document.createElement("img");
 		img.setAttribute("src", picture);
 		img.setAttribute("alt", name);
-		img.setAttribute("aria-label", "Voir le profil de " + name);
+
+		const photographerLink = document.createElement("a");
+		photographerLink.setAttribute("href", "./photographer.html?id=" + id);
+		photographerLink.setAttribute("aria-label", "Profil de " + name);
+		photographerLink.appendChild(img);
 
 		const h2 = document.createElement("h2");
 		h2.textContent = name;
@@ -26,7 +30,7 @@ function photographerFactory(data) {
 		tjm.textContent = price + "€/jour";
 		tjm.classList.add("price");
 
-		article.appendChild(img);
+		article.appendChild(photographerLink);
 		article.appendChild(h2);
 		article.appendChild(location);
 		article.appendChild(slogan);
