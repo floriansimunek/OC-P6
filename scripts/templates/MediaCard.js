@@ -13,7 +13,7 @@ class MediaCard {
 		if (this.media.image) {
 			return `
 				<div class="medias">
-					<img src="./assets/images/${this.media.image}">
+					<img class="media" src="./assets/images/${this.media.image}">
 					<div class="media-informations">
 						<p class="title">${this.media.title}</p>
 						<p class="likes">${this.media.likes + svg}</p>
@@ -23,7 +23,7 @@ class MediaCard {
 		} else if (this.media.video) {
 			return `
 				<div class="medias">
-					<video>
+					<video class="media">
 						<source src="./assets/videos/${this.media.video}" type="video/mp4">
 					</video>
 					<div class="media-informations">

@@ -1,4 +1,5 @@
-#contact_modal {
+#contact_modal,
+#media_modal {
 	display: none;
 	background: #c4c4c470;
 	position: fixed;
@@ -8,10 +9,20 @@
 	height: 100vh;
 }
 
+#media_modal.visible,
 #contact_modal.visible {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#media_modal .opened-media {
+	width: 30vw;
+	height: auto;
+}
+
+#media_modal .opened-media:hover {
+	cursor: pointer;
 }
 
 .contact-form div #message {
@@ -123,6 +134,10 @@
 
 .media-informations .likes svg {
 	margin-left: 5px;
+}
+
+.media:hover {
+	cursor: pointer;
 }
 
 .contact_button {

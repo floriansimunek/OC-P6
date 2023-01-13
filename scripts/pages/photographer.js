@@ -29,6 +29,14 @@ class App {
 		this.photographerLikes.innerHTML = photographerCard.getLikes(mediasData);
 
 		this.photographerModalTitle.innerHTML += photographerCard.getName();
+
+		const mediasDOM = document.querySelectorAll(".media");
+		mediasDOM.forEach((media) => {
+			const mediaModal = new MediaModal(media);
+			media.addEventListener("click", function () {
+				mediaModal.open();
+			});
+		});
 	}
 }
 
