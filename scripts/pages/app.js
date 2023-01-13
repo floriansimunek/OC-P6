@@ -7,14 +7,14 @@ class App {
 		this.$photographersWrapper = null;
 		this.$photographersBanner = null;
 		this.$photographerMedias = null;
+		this.$photographerInformations = null;
 	}
 
 	async init() {
 		this.data = await this.api.getData();
 
 		this.createPhotographersCard(this.data.photographers);
-		this.createPhotographerBanner(this.data.photographers);
-		this.createPhotographerMedias(this.data.photographers);
+		this.createPhotographer(this.data.photographers);
 	}
 
 	createPhotographersCard(photographers) {
@@ -28,7 +28,7 @@ class App {
 		}
 	}
 
-	createPhotographerBanner(photographers) {
+	createPhotographer(photographers) {
 		this.$photographersBanner = document.querySelector(".photograph-header");
 
 		if (this.$photographersBanner) {
@@ -39,9 +39,25 @@ class App {
 				}
 			});
 		}
+		this.$photographerInformations = document.querySelector(".more-informations");
+
+		if (this.$photographerInformations) {
+			photographers.filter((photographer) => {
+				if (photographer.id == this.photographerId) {
+					const p = new Photographer(photographer);
+					const likes = this.$photographerInformations.querySelector("#likes");
+					const price = this.$photographerInformations.querySelector("#price");
+
+					likes.innerHTML = p.getLikes(this.data.media, this.photographerId);
+					price.innerHTML = p.price + "€/jour";
+				}
+			});
+		}
+
+		this.createMediasCards(this.data.photographers);
 	}
 
-	createPhotographerMedias(photographers) {
+	createMediasCards(photographers) {
 		this.$photographerMedias = document.querySelector(".photograph-medias-list");
 
 		if (this.$photographerMedias) {

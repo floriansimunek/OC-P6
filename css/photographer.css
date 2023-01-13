@@ -83,7 +83,7 @@
 	border-radius: 5px;
 }
 
-#more-informations {
+.more-informations {
 	background: #db8876;
 	width: 375px;
 	height: 70px;
@@ -96,18 +96,18 @@
 	align-items: center;
 }
 
-#more-informations #likes,
-#more-informations #price {
+.more-informations #likes,
+.more-informations #price {
 	font-size: 24px;
 	font-weight: 500;
 }
 
-#more-informations #likes svg {
+.more-informations #likes svg {
 	display: block;
 	margin-left: 5px;
 }
 
-#more-informations #likes {
+.more-informations #likes {
 	display: flex;
 	justify-content: center;
 	align-items: center;
