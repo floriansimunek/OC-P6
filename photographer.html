@@ -40,16 +40,29 @@
 			</div>
 			<div class="photograph-medias-list"></div>
 		</main>
+		<div id="more-informations">
+			<div id="likes"></div>
+			<div id="price"></div>
+		</div>
 		<div id="contact_modal">
 			<div class="modal">
 				<header>
 					<h2>Contactez-moi</h2>
 					<img src="assets/icons/close.svg" onclick="closeModal()" />
 				</header>
-				<form>
+				<form class="contact-form">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstname">Prénom</label>
+						<input type="text" name="firstname" id="firstname" />
+
+						<label for="lastname">Nom</label>
+						<input type="text" name="lastname" id="lastname" />
+
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" />
+
+						<label for="message">Message</label>
+						<textarea name="message" id="message"></textarea>
 					</div>
 					<button class="contact_button">Envoyer</button>
 				</form>

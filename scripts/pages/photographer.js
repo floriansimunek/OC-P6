@@ -2,6 +2,8 @@ class App {
 	constructor() {
 		this.mediasWrapper = document.querySelector(".photograph-medias-list");
 		this.photographerHeader = document.querySelector(".photograph-header");
+		this.photographerPrice = document.querySelector("#price");
+		this.photographerLikes = document.querySelector("#likes");
 		this.photographersApi = new Api("./data/photographers.json");
 	}
 
@@ -17,8 +19,13 @@ class App {
 		const photographerData = await this.photographersApi.getPhotographer();
 
 		const photographerCard = new PhotographerCard(photographerData);
+
 		this.photographerHeader.innerHTML += photographerCard.createPhotographerPortrait();
 		this.photographerHeader.insertAdjacentHTML("afterbegin", photographerCard.createPhotographerInformations());
+
+		this.photographerPrice.innerHTML = photographerCard.getPrice();
+
+		this.photographerLikes.innerHTML = photographerCard.getLikes(mediasData);
 	}
 }
 
