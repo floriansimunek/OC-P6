@@ -33,21 +33,21 @@ class Api {
 		return photographer;
 	}
 
-	async getPhotographerPhotosList() {
-		let photos = [];
+	async getPhotographerMediasList() {
+		let medias = [];
 		let params = new URL(document.location).searchParams;
 		let id = params.get("id");
 
 		await fetch(this._url)
 			.then((response) => response.json())
 			.then((json) => {
-				json.media.forEach((photo) => {
-					if (photo.photographerId == id) {
-						photos = [...photos, photo];
+				json.media.forEach((media) => {
+					if (media.photographerId == id) {
+						medias = [...medias, media];
 					}
 				});
 			});
 
-		return photos;
+		return medias;
 	}
 }

@@ -12,18 +12,22 @@
 		<!-- API -->
 		<script src="scripts/api/Api.js" defer></script>
 
+		<!-- FACTORIES -->
+		<script src="scripts/factories/MediaFactory.js" defer></script>
+
 		<!-- TEMPLATES -->
-		<script src="scripts/templates/PhotoCard.js" defer></script>
+		<script src="scripts/templates/MediaCard.js" defer></script>
 
 		<!-- MODELS -->
-		<script src="/scripts/models/Photos.js" defer></script>
+		<script src="scripts/models/Photo.js" defer></script>
+		<script src="scripts/models/Video.js" defer></script>
 		<script src="scripts/models/Photographer.js" defer></script>
 
 		<!-- SCRIPT -->
-		<script src="/scripts/pages/photographer.js" defer></script>
+		<script src="scripts/pages/photographer.js" defer></script>
 
 		<!-- UTILS -->
-		<script src="/scripts/utils/contactForm.js" defer></script>
+		<script src="scripts/utils/contactForm.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -33,7 +37,7 @@
 			<div class="photograph-header">
 				<button class="contact_button" onclick="displayModal()">Contactez-moi</button>
 			</div>
-			<div class="photograph-photos-list"></div>
+			<div class="photograph-medias-list"></div>
 		</main>
 		<div id="contact_modal">
 			<div class="modal">

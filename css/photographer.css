@@ -35,7 +35,9 @@
 	font-size: 18px;
 }
 
-.photograph-photos-list {
+.photograph-medias-list {
+	margin-top: 50px;
+	padding-bottom: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -43,7 +45,8 @@
 	gap: 20px 95px;
 }
 
-.photograph-photos-list img {
+.photograph-medias-list img,
+.photograph-medias-list video {
 	width: 350px;
 	height: 300px;
 	object-fit: cover;

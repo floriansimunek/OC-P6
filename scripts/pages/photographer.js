@@ -1,18 +1,18 @@
 class App {
 	constructor() {
-		this.photosWrapper = document.querySelector(".photograph-photos-list");
+		this.mediasWrapper = document.querySelector(".photograph-medias-list");
 		this.photographersApi = new Api("./data/photographers.json");
 	}
 
 	async main() {
-		const photographerPhotosDatas = await this.photographersApi.getPhotographerPhotosList();
+		const mediasData = await this.photographersApi.getPhotographerMediasList();
 
-		photographerPhotosDatas
-			.map((photo) => new Photo(photo))
-			.forEach((photo) => {
-				const Template = new PhotoCard(photo);
-				this.photosWrapper.innerHTML += Template.createPhotoCard();
-			});
+		const medias = mediasData.map((media) => (media.hasOwnProperty("image") ? new MediaFactory(media, "image") : new MediaFactory(media, "video")));
+
+		medias.forEach((media) => {
+			const Template = new MediaCard(media);
+			this.mediasWrapper.innerHTML += Template.createMediaCard();
+		});
 	}
 }
 
