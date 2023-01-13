@@ -16,7 +16,7 @@ class PhotographerCard {
 			<div class="informations">
 				<p class="name">${this.photographer.name}</p>
 				<p class="location">${this.photographer.city + ", " + this.photographer.country}</p>
-				<p class="slogan>${this.photographer.slogan}</p>
+				<p class="slogan">${this.photographer.tagline}</p>
 			</div>
 		`;
 

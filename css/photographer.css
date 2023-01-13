@@ -36,10 +36,10 @@
 }
 
 .photograph-medias-list {
-	margin-top: 50px;
-	padding-bottom: 50px;
+	margin: 50px 100px 0;
+	padding: 0 0 50px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 20px 95px;
@@ -47,8 +47,8 @@
 
 .photograph-medias-list img,
 .photograph-medias-list video {
-	width: 350px;
-	height: 300px;
+	width: 500px;
+	height: 400px;
 	object-fit: cover;
 }
 
