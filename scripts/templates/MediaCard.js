@@ -8,7 +8,7 @@ class MediaCard {
 			return `<img src="./assets/images/${this.media.image}">`;
 		} else if (this.media.video) {
 			return `
-				<video controls>
+				<video>
 					<source src="./assets/videos/${this.media.video}" type="video/mp4">
 				</video>
 			`;

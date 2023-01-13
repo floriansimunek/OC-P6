@@ -11,6 +11,26 @@ class PhotographerCard {
 		return `./photographer.html?id=${id}`;
 	}
 
+	createPhotographerInformations() {
+		const informations = `
+			<div class="informations">
+				<p class="name">${this.photographer.name}</p>
+				<p class="location">${this.photographer.city + ", " + this.photographer.country}</p>
+				<p class="slogan>${this.photographer.slogan}</p>
+			</div>
+		`;
+
+		return informations;
+	}
+
+	createPhotographerPortrait() {
+		const img = `
+			<img src="${this.getPortrait(this.photographer.portrait)}">
+		`;
+
+		return img;
+	}
+
 	createPhotographerCardDOM() {
 		const article = `
 			<article>
