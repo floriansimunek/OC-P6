@@ -4,6 +4,7 @@ class App {
 		this.photographerHeader = document.querySelector(".photograph-header");
 		this.photographerPrice = document.querySelector("#price");
 		this.photographerLikes = document.querySelector("#likes");
+		this.photographerModalTitle = document.querySelector("#contact_modal_title");
 		this.photographersApi = new Api("./data/photographers.json");
 	}
 
@@ -26,6 +27,8 @@ class App {
 		this.photographerPrice.innerHTML = photographerCard.getPrice();
 
 		this.photographerLikes.innerHTML = photographerCard.getLikes(mediasData);
+
+		this.photographerModalTitle.innerHTML += photographerCard.getName();
 	}
 }
 

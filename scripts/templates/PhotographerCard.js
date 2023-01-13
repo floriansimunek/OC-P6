@@ -3,6 +3,10 @@ class PhotographerCard {
 		this.photographer = photographer;
 	}
 
+	getName() {
+		return this.photographer.name;
+	}
+
 	getPortrait(image) {
 		return `./assets/photographers/${image}`;
 	}

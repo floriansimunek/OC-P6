@@ -136,10 +136,16 @@
 	cursor: pointer;
 }
 
+.modal header {
+	height: 150px;
+	align-items: flex-start;
+}
+
 .modal header h2 {
-	font-size: 64px;
+	font-size: 48px;
 	font-weight: normal;
-	text-align: center;
+	margin: 0;
+	padding-bottom: 50px;
 }
 
 form {
