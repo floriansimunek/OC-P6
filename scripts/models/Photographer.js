@@ -42,7 +42,7 @@ class Photographer {
 	}
 
 	get page() {
-		return `./photographer.html?${this.id}`;
+		return `./photographer.html?id=${this.id}`;
 	}
 
 	createCardDOM() {
@@ -61,5 +61,38 @@ class Photographer {
         `;
 
 		return article;
+	}
+
+	createBannerDOM() {
+		const banner = `
+            <div class="informations">
+                <p class="name">${this.name}</p>
+                <p class="location">${this.city}, ${this.country}</p>
+                <p class="slogan">${this.tagline}</p>
+            </div>
+            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            <img src="${this.picture}">
+        `;
+
+		return banner;
+	}
+
+	getMedias(medias, id) {
+		let HTML = "";
+
+		medias.filter((media) => {
+			if (media.photographerId == id) {
+				const m = media.hasOwnProperty("image") ? new MediaFactory(media, "image") : new MediaFactory(media, "video");
+				if (m.image) {
+					HTML += m.createPhotoCard();
+				} else if (m.video) {
+					HTML += m.createVideoCard();
+				} else {
+					throw "Media type error";
+				}
+			}
+		});
+
+		return HTML;
 	}
 }
