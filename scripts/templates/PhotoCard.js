@@ -8,8 +8,7 @@ class PhotoCard {
 	}
 
 	createPhotoCard() {
-		const img = document.createElement("img");
-		img.setAttribute("src", this.getLink(this.photo.image));
+		const img = `<img src="${this.getLink(this.photo.image)}">`;
 
 		return img;
 	}

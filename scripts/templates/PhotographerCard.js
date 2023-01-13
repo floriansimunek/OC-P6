@@ -11,7 +11,7 @@ class PhotographerCard {
 		return `./photographer.html?id=${id}`;
 	}
 
-	createPhotographerCard() {
+	createPhotographerCardDOM() {
 		const article = `
 			<article>
 				<a href="${this.getPageLink(this.photographer.id)}" aria-label="Profil de ${this.photographer.name}">

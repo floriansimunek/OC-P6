@@ -11,7 +11,7 @@ class App {
 			.map((photo) => new Photo(photo))
 			.forEach((photo) => {
 				const Template = new PhotoCard(photo);
-				this.photosWrapper.appendChild(Template.createPhotoCard());
+				this.photosWrapper.innerHTML += Template.createPhotoCard();
 			});
 	}
 }

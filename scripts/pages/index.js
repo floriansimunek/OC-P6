@@ -11,7 +11,7 @@ class App {
 			.map((photographer) => new Photographer(photographer))
 			.forEach((photographer) => {
 				const Template = new PhotographerCard(photographer);
-				this.photographersWrapper.innerHTML += Template.createPhotographerCard();
+				this.photographersWrapper.innerHTML += Template.createPhotographerCardDOM();
 			});
 	}
 }
