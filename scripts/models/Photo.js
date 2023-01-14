@@ -49,7 +49,7 @@ class Photo {
 	createPhotoCard() {
 		return `
             <div class="medias">
-                <img class="media" src="${this.url}">
+                <img class="media" src="${this.url}" onclick="openMediaModal(event)">
                 <div class="media-informations">
                     <p class="title">${this.title}</p>
                     <p class="likes">${this.likes + this.svg}</p>

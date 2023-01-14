@@ -10,14 +10,14 @@
 		<title>Fisheye - photographe</title>
 		<!-- API -->
 		<script src="./scripts/api/Api.js" defer></script>
+		<!-- UTILS -->
+		<script src="./scripts/utils/Modal.js" defer></script>
 		<!-- MODELS -->
 		<script src="./scripts//models/Photo.js" defer></script>
 		<script src="./scripts/models/Photographer.js" defer></script>
 		<script src="./scripts//models/Video.js" defer></script>
 		<!-- FACTORIES -->
 		<script src="./scripts/factory/MediaFactory.js" defer></script>
-		<!-- UTILS -->
-		<script src="./scripts/utils/Modal.js" defer></script>
 		<!-- SCRIPT -->
 		<script src="./scripts/pages/app.js" defer></script>
 	</head>
@@ -35,8 +35,8 @@
 			<div id="likes"></div>
 			<div id="price"></div>
 		</div>
-		<div id="media_modal">
-			<header><img src="assets/icons/close.svg" onclick="closeMediaModal()" /></header>
+		<div id="media_modal" onclick="closeMediaModal()">
+			<img id="close" src="assets/icons/close.svg" onclick="closeMediaModal()" />
 		</div>
 		<div id="contact_modal">
 			<div class="modal">

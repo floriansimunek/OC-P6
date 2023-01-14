@@ -17,6 +17,7 @@ class App {
 		this.createPhotographer(this.data.photographers);
 	}
 
+	// TODO: répétition avec autres fonctions, refactor ?
 	createPhotographersCard(photographers) {
 		this.$photographersWrapper = document.querySelector(".photographer_section");
 

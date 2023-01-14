@@ -49,7 +49,7 @@ class Video {
 	createVideoCard() {
 		return `
             <div class="medias">
-                <video class="media">
+                <video class="media" onclick="openMediaModal(event)">
                     <source src="${this.url}" type="video/mp4">
                 </video>
                 <div class="media-informations">
