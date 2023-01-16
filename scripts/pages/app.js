@@ -1,71 +1,71 @@
 class App {
 	constructor() {
-		this.api = new Api("./data/photographers.json");
-		this.params = new URL(document.location).searchParams;
-		this.data = [];
-		this.photographerId = this.params.get("id");
-		this.$photographersWrapper = null;
-		this.$photographersBanner = null;
-		this.$photographerMedias = null;
-		this.$photographerInformations = null;
+		this.Api = new Api("./data/photographers.json");
+		this._params = new URL(document.location).searchParams;
+		this._data = [];
+		this._photographerId = this._params.get("id");
+		this._$photographersWrapper = null;
+		this._$photographersBanner = null;
+		this._$photographerMedias = null;
+		this._$photographerInformations = null;
 	}
 
 	async init() {
-		this.data = await this.api.getData();
+		this._data = await this.Api.getData();
 
-		this.createPhotographersCard(this.data.photographers);
-		this.createPhotographer(this.data.photographers);
+		this.createPhotographersCard(this._data.photographers);
+		this.createPhotographer(this._data.photographers);
 	}
 
 	// TODO: répétition avec autres fonctions, refactor ?
 	createPhotographersCard(photographers) {
-		this.$photographersWrapper = document.querySelector(".photographer_section");
+		this._$photographersWrapper = document.querySelector(".photographer_section");
 
-		if (this.$photographersWrapper) {
+		if (this._$photographersWrapper) {
 			photographers.map((photographer) => {
 				const p = new Photographer(photographer);
-				this.$photographersWrapper.innerHTML += p.createCardDOM();
+				this._$photographersWrapper.innerHTML += p.createCardDOM();
 			});
 		}
 	}
 
 	createPhotographer(photographers) {
-		this.$photographersBanner = document.querySelector(".photograph-header");
+		this._$photographersBanner = document.querySelector(".photograph-header");
 
-		if (this.$photographersBanner) {
+		if (this._$photographersBanner) {
 			photographers.filter((photographer) => {
-				if (photographer.id == this.photographerId) {
+				if (photographer.id == this._photographerId) {
 					const p = new Photographer(photographer);
-					this.$photographersBanner.innerHTML = p.createBannerDOM();
+					this._$photographersBanner.innerHTML = p.createBannerDOM();
 				}
 			});
 		}
-		this.$photographerInformations = document.querySelector(".more-informations");
+		this._$photographerInformations = document.querySelector(".more-informations");
 
-		if (this.$photographerInformations) {
+		if (this._$photographerInformations) {
 			photographers.filter((photographer) => {
-				if (photographer.id == this.photographerId) {
+				if (photographer.id == this._photographerId) {
 					const p = new Photographer(photographer);
-					const likes = this.$photographerInformations.querySelector("#likes");
-					const price = this.$photographerInformations.querySelector("#price");
+					const likes = this._$photographerInformations.querySelector("#likes");
+					const price = this._$photographerInformations.querySelector("#price");
 
-					likes.innerHTML = p.getLikes(this.data.media, this.photographerId);
+					likes.innerHTML = p.getLikes(this._data.media, this._photographerId);
 					price.innerHTML = p.price + "€/jour";
 				}
 			});
 		}
 
-		this.createMediasCards(this.data.photographers);
+		this.createMediasCards(this._data.photographers);
 	}
 
 	createMediasCards(photographers) {
-		this.$photographerMedias = document.querySelector(".photograph-medias-list");
+		this._$photographerMedias = document.querySelector(".photograph-medias-list");
 
-		if (this.$photographerMedias) {
+		if (this._$photographerMedias) {
 			photographers.filter((photographer) => {
-				if (photographer.id == this.photographerId) {
+				if (photographer.id == this._photographerId) {
 					const p = new Photographer(photographer);
-					this.$photographerMedias.innerHTML = p.getMedias(this.data.media, this.photographerId);
+					this._$photographerMedias.innerHTML = p.getMedias(this._data.media, this._photographerId);
 				}
 			});
 		}

@@ -5,8 +5,8 @@ class Video extends Media {
 
 	createVideoCard() {
 		return `
-            <div class="medias">
-                <video class="media">
+            <div class="medias" onclick="openMediaModal('media_${this.id}')">
+                <video class="media" id="media_${this.id}">
                     <source src="${this.url}" type="video/mp4">
                 </video>
                 <div class="media-informations">
