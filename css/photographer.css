@@ -1,18 +1,12 @@
 #contact_modal,
 #media_modal {
 	display: none;
-	background: #c4c4c470;
+	background: #fff;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-}
-
-#contact_modal.visible {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 #media_modal.visible {
@@ -22,23 +16,15 @@
 	flex-direction: row-reverse;
 }
 
-#media_modal .opened-media {
-	width: 30vw;
-	height: auto;
-}
-
-#media_modal .opened-media:hover {
+#media_modal #close,
+.media_block:hover {
 	cursor: pointer;
 }
 
-/* TODO: Change icon color to : #901C1C */
-#media_modal #close:hover {
-	cursor: pointer;
-}
-
-#media_modal .media {
-	max-width: 30%;
-	height: auto;
+#contact_modal.visible {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .contact-form div #message {

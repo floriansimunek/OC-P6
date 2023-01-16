@@ -14,12 +14,12 @@
 		<script src="./scripts/utils/Modal.js" defer></script>
 		<!-- TEMPLATES -->
 		<script src="./scripts/templates/Media.js" defer></script>
-		<!-- OBSERVERS -->
-		<!-- <script src="./scripts/observers/MediaModal.js" defer></script> -->
 		<!-- MODELS -->
 		<script src="./scripts//models/Photo.js" defer></script>
 		<script src="./scripts//models/Video.js" defer></script>
 		<script src="./scripts/models/Photographer.js" defer></script>
+		<!-- OBSERVERS -->
+		<script src="./scripts/observers/MediaModal.js" defer></script>
 		<!-- FACTORIES -->
 		<script src="./scripts/factory/MediaFactory.js" defer></script>
 		<!-- SCRIPT -->
@@ -39,14 +39,15 @@
 			<div id="likes"></div>
 			<div id="price"></div>
 		</div>
-		<div id="media_modal" onclick="closeMediaModal()">
-			<img id="close" src="assets/icons/close.svg" onclick="closeMediaModal()" />
+		<div id="media_modal">
+			<div class="medias"></div>
+			<img id="close" src="assets/icons/close_red.svg" />
 		</div>
 		<div id="contact_modal">
 			<div class="modal">
 				<header>
 					<h2 id="contact_modal_title">Contactez-moi<br /></h2>
-					<img src="assets/icons/close.svg" onclick="closeModal()" />
+					<img src="assets/icons/close.svg" />
 				</header>
 				<form class="contact-form">
 					<div>
