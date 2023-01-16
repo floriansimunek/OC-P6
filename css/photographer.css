@@ -9,11 +9,17 @@
 	height: 100vh;
 }
 
-#media_modal.visible,
 #contact_modal.visible {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#media_modal.visible {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
 }
 
 #media_modal .opened-media {
@@ -23,6 +29,16 @@
 
 #media_modal .opened-media:hover {
 	cursor: pointer;
+}
+
+/* TODO: Change icon color to : #901C1C */
+#media_modal #close:hover {
+	cursor: pointer;
+}
+
+#media_modal .media {
+	max-width: 30%;
+	height: auto;
 }
 
 .contact-form div #message {
@@ -184,25 +200,6 @@
 	font-weight: normal;
 	margin: 0;
 	padding-bottom: 50px;
-}
-
-#media_modal {
-	/*position: relative*/
-}
-
-#media_modal #close {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-#media_modal #close:hover {
-	cursor: pointer;
-}
-
-#media_modal .media {
-	max-width: 30%;
-	height: auto;
 }
 
 form {

@@ -88,9 +88,9 @@ class Photographer {
 		medias.filter((media) => {
 			if (media.photographerId == id) {
 				const m = media.hasOwnProperty("image") ? new MediaFactory(media, "image") : new MediaFactory(media, "video");
-				if (m.image) {
+				if (m._image) {
 					HTML += m.createPhotoCard();
-				} else if (m.video) {
+				} else if (m._video) {
 					HTML += m.createVideoCard();
 				} else {
 					throw "Media type error";
