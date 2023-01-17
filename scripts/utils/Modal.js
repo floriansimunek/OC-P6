@@ -1,9 +1,9 @@
 function displayModal() {
 	const modal = document.getElementById("contact_modal");
-	modal.classList.toggle("visible");
+	modal.classList.add("visible");
 }
 
 function closeModal() {
 	const modal = document.getElementById("contact_modal");
-	modal.classList.toggle("visible");
+	modal.classList.remove("visible");
 }

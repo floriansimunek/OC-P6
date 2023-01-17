@@ -8,6 +8,7 @@ class App {
 		this._$photographersBanner = null;
 		this._$photographerMedias = null;
 		this._$photographerInformations = null;
+		this._$contactModalTitle = document.querySelector("#contact_modal #contact_modal_title");
 	}
 
 	async init() {
@@ -49,6 +50,7 @@ class App {
 					const likes = this._$photographerInformations.querySelector("#likes");
 					const price = this._$photographerInformations.querySelector("#price");
 
+					this._$contactModalTitle.innerHTML += p.name;
 					likes.innerHTML = p.getLikes(this._data.media, this._photographerId);
 					price.innerHTML = p.price + "€/jour";
 				}
