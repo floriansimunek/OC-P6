@@ -6,7 +6,7 @@ class Photo extends Media {
 	createPhotoCard() {
 		return `
             <div class="media_block">
-                <img class="media" id="media_${this.id}" src="${this.url}">
+                <img class="media image" src="${this.url}">
                 <div class="media-informations">
                     <p class="title">${this.title}</p>
                     <p class="likes">${this.likes + this.svg}</p>

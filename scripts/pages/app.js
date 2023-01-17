@@ -8,7 +8,6 @@ class App {
 		this._$photographersBanner = null;
 		this._$photographerMedias = null;
 		this._$photographerInformations = null;
-		this._$contactModalTitle = document.querySelector("#contact_modal #contact_modal_title");
 	}
 
 	async init() {
@@ -16,6 +15,9 @@ class App {
 
 		this.createPhotographersCard(this._data.photographers);
 		this.createPhotographer(this._data.photographers);
+		if (this._photographerId) {
+			new MediaModal(this._$photographerMedias);
+		}
 	}
 
 	// TODO: répétition avec autres fonctions, refactor ?
@@ -50,8 +52,8 @@ class App {
 					const likes = this._$photographerInformations.querySelector("#likes");
 					const price = this._$photographerInformations.querySelector("#price");
 
-					this._$contactModalTitle.innerHTML += p.name;
-					likes.innerHTML = p.getLikes(this._data.media, this._photographerId);
+					document.querySelector("#contact_modal #contact_modal_title").innerHTML += p.name;
+					likes.innerHTML = p.getLikes(this._data.media);
 					price.innerHTML = p.price + "€/jour";
 				}
 			});

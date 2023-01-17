@@ -101,11 +101,11 @@ class Photographer {
 		return HTML;
 	}
 
-	getLikes(medias, id) {
+	getLikes(medias) {
 		let likes = 0;
 
 		medias.filter((media) => {
-			if (media.photographerId == id) {
+			if (media.photographerId == this.id) {
 				likes += media.likes;
 			}
 		});

@@ -13,12 +13,30 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: row-reverse;
 }
 
-#media_modal #close,
-.media_block:hover {
+#media_modal .arrow:hover {
 	cursor: pointer;
+}
+
+#media_modal .medias {
+	width: 80%;
+	height: 90vh;
+}
+
+#media_modal .medias .media {
+	height: 100%;
+	width: auto;
+	object-fit: cover;
+	display: block;
+	margin: 0 auto;
+}
+
+#media_modal #close {
+	cursor: pointer;
+	position: absolute;
+	top: 5%;
+	right: 5%;
 }
 
 #contact_modal.visible {
