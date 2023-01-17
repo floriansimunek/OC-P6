@@ -12,12 +12,19 @@ class MediaModal {
 	init() {
 		this._$media = document.querySelector(`#media_${this._mediaID}`);
 
-		this._$media.addEventListener("click", () => {
-			this.open();
-		});
+		this.event(this._$media, "click", "open");
+		this.event(this._$closeBtn, "click", "close");
+	}
 
-		this._$closeBtn.addEventListener("click", () => {
-			this.close();
+	event(el, event, method) {
+		el.addEventListener(event, () => {
+			if (method === "open") {
+				this.open();
+			} else if (method === "close") {
+				this.close();
+			} else {
+				throw "Unknown method type";
+			}
 		});
 	}
 
