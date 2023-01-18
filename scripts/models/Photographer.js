@@ -76,7 +76,7 @@ class Photographer {
                 <p class="slogan">${this.tagline}</p>
             </div>
             <button class="contact_button">Contactez-moi</button>
-            <img src="${this.picture}">
+            <img src="${this.picture}" alt="${this.name}">
         `;
 
 		return banner;
