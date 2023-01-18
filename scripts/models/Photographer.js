@@ -75,7 +75,7 @@ class Photographer {
                 <p class="location">${this.city}, ${this.country}</p>
                 <p class="slogan">${this.tagline}</p>
             </div>
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            <button class="contact_button">Contactez-moi</button>
             <img src="${this.picture}">
         `;
 

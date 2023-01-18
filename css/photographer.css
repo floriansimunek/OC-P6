@@ -47,7 +47,7 @@
 	margin-top: 10px;
 }
 
-#media_modal #close {
+#media_modal #closeMediaModal {
 	cursor: pointer;
 	position: absolute;
 	top: 5%;
@@ -186,6 +186,13 @@
 	background-color: #901c1c;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: all 0.4s ease;
+}
+
+.contact_button:hover,
+.contact_button:focus {
+	color: black;
+	background-color: #db8876;
 }
 
 .modal {

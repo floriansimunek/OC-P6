@@ -2,7 +2,7 @@ class MediaModal {
 	constructor(data) {
 		this._$medias = data.querySelectorAll(".media_block");
 		this._$modal = document.querySelector("#media_modal");
-		this._$close = document.querySelector("#close");
+		this._$close = document.querySelector("#closeMediaModal");
 		this._mediaSrc = null;
 		this._mediaIndex = 0;
 		this._$prevBtn = document.querySelector(".arrow.prev");

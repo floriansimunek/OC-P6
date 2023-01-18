@@ -10,8 +10,6 @@
 		<title>Fisheye - photographe</title>
 		<!-- API -->
 		<script src="./scripts/api/Api.js" defer></script>
-		<!-- UTILS -->
-		<script src="./scripts/utils/Modal.js" defer></script>
 		<!-- TEMPLATES -->
 		<script src="./scripts/templates/Media.js" defer></script>
 		<!-- MODELS -->
@@ -20,6 +18,7 @@
 		<script src="./scripts/models/Photographer.js" defer></script>
 		<!-- OBSERVERS -->
 		<script src="./scripts/observers/MediaModal.js" defer></script>
+		<script src="./scripts/observers/ContactModal.js" defer></script>
 		<!-- FACTORIES -->
 		<script src="./scripts/factory/MediaFactory.js" defer></script>
 		<!-- SCRIPT -->
@@ -31,7 +30,7 @@
 		</header>
 		<main id="main">
 			<div class="photograph-header">
-				<button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+				<button class="contact_button">Contactez-moi</button>
 			</div>
 			<div class="photograph-medias-list"></div>
 		</main>
@@ -40,7 +39,7 @@
 			<div id="price"></div>
 		</div>
 		<div id="media_modal">
-			<img id="close" src="assets/icons/close_red.svg" />
+			<img id="closeMediaModal" src="assets/icons/close_red.svg" />
 			<img class="arrow prev" src="assets/icons/left_arrow.svg" />
 			<div class="medias"></div>
 			<img class="arrow next" src="assets/icons/right_arrow.svg" />
@@ -49,7 +48,7 @@
 			<div class="modal">
 				<header>
 					<h2 id="contact_modal_title">Contactez-moi<br /></h2>
-					<img src="assets/icons/close.svg" onclick="closeModal()" />
+					<img id="closeContactModal" src="assets/icons/close.svg" />
 				</header>
 				<form class="contact-form">
 					<div>

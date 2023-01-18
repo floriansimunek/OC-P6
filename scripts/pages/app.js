@@ -17,6 +17,7 @@ class App {
 		this.createPhotographer(this._data.photographers);
 		if (this._photographerId) {
 			new MediaModal(this._$photographerMedias);
+			new ContactModal();
 		}
 	}
 
