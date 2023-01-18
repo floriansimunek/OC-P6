@@ -17,8 +17,12 @@ class MediaModal {
 					this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
 					this._$modal.querySelector(".medias").appendChild(media.querySelector(".title").cloneNode(true));
 				} else if (media.querySelector(".media").classList.contains("video")) {
-					this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
-					this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
+					const video = media.querySelector(".media").cloneNode(true);
+					video.setAttribute("controls", "");
+					video.setAttribute("autoplay", "");
+
+					this._$modal.querySelector(".medias").appendChild(video);
+					this._$modal.querySelector(".medias").appendChild(media.querySelector(".title").cloneNode(true));
 				} else {
 					throw "Unknown media type";
 				}
@@ -50,35 +54,43 @@ class MediaModal {
 
 	prevMedia() {
 		this._mediaIndex--;
+		let media;
 
 		if (this._mediaIndex < 0) {
 			this._mediaIndex = this._$medias.length - 1;
 		}
 
 		if (this._$medias[this._mediaIndex].querySelector(".media").classList.contains("video")) {
-			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("controls", "");
-			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("autoplay", "");
+			media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
+			media.setAttribute("controls", "");
+			media.setAttribute("autoplay", "");
+		} else {
+			media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
 		}
 
 		this._$modal.querySelector(".medias").innerHTML = "";
-		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true));
+		this._$modal.querySelector(".medias").appendChild(media);
 		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".title").cloneNode(true));
 	}
 
 	nextMedia() {
 		this._mediaIndex++;
+		let media;
 
 		if (this._mediaIndex >= this._$medias.length) {
 			this._mediaIndex = 0;
 		}
 
 		if (this._$medias[this._mediaIndex].querySelector(".media").classList.contains("video")) {
-			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("controls", "");
-			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("autoplay", "");
+			media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
+			media.setAttribute("controls", "");
+			media.setAttribute("autoplay", "");
+		} else {
+			media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
 		}
 
 		this._$modal.querySelector(".medias").innerHTML = "";
-		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true));
+		this._$modal.querySelector(".medias").appendChild(media);
 		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".title").cloneNode(true));
 	}
 }
