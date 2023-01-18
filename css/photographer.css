@@ -9,6 +9,10 @@
 	height: 100vh;
 }
 
+#contact_modal {
+	background: #c4c4c440;
+}
+
 #media_modal.visible {
 	display: flex;
 	justify-content: center;
@@ -104,7 +108,6 @@
 	margin: 50px 100px 0;
 	padding: 0 0 100px;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 20px 95px;
@@ -120,6 +123,22 @@
 	height: 400px;
 	object-fit: cover;
 	border-radius: 5px;
+}
+
+#sorting_block {
+	margin-left: 100px;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+#sorting_block #sorting {
+	background-color: #901c1c;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 0.75rem;
+	font-size: 18px;
+	margin-left: 25px;
 }
 
 .more-informations {

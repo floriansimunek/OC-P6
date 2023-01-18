@@ -5,7 +5,7 @@ class Video extends Media {
 
 	createVideoCard() {
 		return `
-            <div class="media_block" id="media_${this.id}">
+            <div class="media_block" id="media_${this.id}" data-title="${this.title}" data-date="${this.date}" data-likes="${this.likes}">
                 <video class="media video">
                     <source src="${this.url}" type="video/mp4">
                 </video>
