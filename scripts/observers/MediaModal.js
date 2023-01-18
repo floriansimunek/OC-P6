@@ -1,6 +1,6 @@
 class MediaModal {
 	constructor(data) {
-		this._$medias = data.querySelectorAll(".media");
+		this._$medias = data.querySelectorAll(".media_block");
 		this._$modal = document.querySelector("#media_modal");
 		this._$close = document.querySelector("#close");
 		this._mediaSrc = null;
@@ -12,11 +12,13 @@ class MediaModal {
 
 	init() {
 		this._$medias.forEach((media, i) => {
-			media.addEventListener("click", () => {
-				if (media.classList.contains("image")) {
-					this._$modal.querySelector(".medias").appendChild(media.cloneNode(true));
-				} else if (media.classList.contains("video")) {
-					this._$modal.querySelector(".medias").appendChild(media.cloneNode(true));
+			media.querySelector(".media").addEventListener("click", () => {
+				if (media.querySelector(".media").classList.contains("image")) {
+					this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
+					this._$modal.querySelector(".medias").appendChild(media.querySelector(".title").cloneNode(true));
+				} else if (media.querySelector(".media").classList.contains("video")) {
+					this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
+					this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
 				} else {
 					throw "Unknown media type";
 				}
@@ -26,7 +28,6 @@ class MediaModal {
 				this._$prevBtn.addEventListener("click", () => {
 					this.prevMedia();
 				});
-
 				this._$nextBtn.addEventListener("click", () => {
 					this.nextMedia();
 				});
@@ -54,13 +55,14 @@ class MediaModal {
 			this._mediaIndex = this._$medias.length - 1;
 		}
 
-		if (this._$medias[this._mediaIndex].classList.contains("video")) {
-			this._$medias[this._mediaIndex].setAttribute("controls", "");
-			this._$medias[this._mediaIndex].setAttribute("autoplay", "");
+		if (this._$medias[this._mediaIndex].querySelector(".media").classList.contains("video")) {
+			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("controls", "");
+			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("autoplay", "");
 		}
 
 		this._$modal.querySelector(".medias").innerHTML = "";
-		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].cloneNode(true));
+		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true));
+		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".title").cloneNode(true));
 	}
 
 	nextMedia() {
@@ -70,12 +72,13 @@ class MediaModal {
 			this._mediaIndex = 0;
 		}
 
-		if (this._$medias[this._mediaIndex].classList.contains("video")) {
-			this._$medias[this._mediaIndex].setAttribute("controls", "");
-			this._$medias[this._mediaIndex].setAttribute("autoplay", "");
+		if (this._$medias[this._mediaIndex].querySelector(".media").classList.contains("video")) {
+			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("controls", "");
+			this._$medias[this._mediaIndex].querySelector(".media").setAttribute("autoplay", "");
 		}
 
 		this._$modal.querySelector(".medias").innerHTML = "";
-		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].cloneNode(true));
+		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true));
+		this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".title").cloneNode(true));
 	}
 }

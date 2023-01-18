@@ -5,7 +5,7 @@ class Photo extends Media {
 
 	createPhotoCard() {
 		return `
-            <div class="media_block">
+            <div class="media_block" id="media_${this.id}">
                 <img class="media image" src="${this.url}">
                 <div class="media-informations">
                     <p class="title">${this.title}</p>
