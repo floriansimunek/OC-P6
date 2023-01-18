@@ -8,7 +8,7 @@ class App {
 		this._$photographersBanner = null;
 		this._$photographerMedias = null;
 		this._$photographerInformations = null;
-		this._$sorting = document.querySelector("#sorting");
+		this._$sorting = null;
 	}
 
 	async init() {
@@ -21,21 +21,25 @@ class App {
 			new ContactModal();
 		}
 		this.sortMedias("LIKES");
-		this._$sorting.addEventListener("change", (e) => {
-			switch (e.target.value) {
-				case "date":
-					this.sortMedias("DATES");
-					break;
-				case "likes":
-					this.sortMedias("LIKES");
-					break;
-				case "title":
-					this.sortMedias("TITLES");
-					break;
-				default:
-					throw "Unknown sorter value";
-			}
-		});
+
+		if (this._photographerId) {
+			this._$sorting = document.querySelector("#sorting");
+			this._$sorting.addEventListener("change", (e) => {
+				switch (e.target.value) {
+					case "date":
+						this.sortMedias("DATES");
+						break;
+					case "likes":
+						this.sortMedias("LIKES");
+						break;
+					case "title":
+						this.sortMedias("TITLES");
+						break;
+					default:
+						throw "Unknown sorter value";
+				}
+			});
+		}
 	}
 
 	// TODO: répétition avec autres fonctions, refactor ?

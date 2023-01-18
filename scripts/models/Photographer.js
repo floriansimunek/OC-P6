@@ -55,9 +55,9 @@ class Photographer {
             <article>
                 <a href="${this.page}">
                     <img src="${this.picture}" alt="${this.name}">
+					<h2>${this.name}</h2>
                 </a>
-                <h2>${this.name}</h2>
-                <div class="photographer_informations">
+                <div class="photographer_informations" tabindex="0">
                     <p class="location">${this.city}, ${this.country}</p>
                     <p class="slogan">${this.tagline}</p>
                     <p class="price">${this.price}€/jour</p>
