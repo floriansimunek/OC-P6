@@ -110,6 +110,10 @@
 	gap: 20px 95px;
 }
 
+.photograph-medias-list .media_block .likes:hover {
+	cursor: pointer;
+}
+
 .photograph-medias-list img,
 .photograph-medias-list video {
 	width: 500px;

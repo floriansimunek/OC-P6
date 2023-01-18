@@ -55,7 +55,7 @@ class App {
 
 					document.querySelector("#contact_modal #contact_modal_title").innerHTML += p.name;
 					likes.innerHTML = p.getLikes(this._data.media);
-					price.innerHTML = p.price + "€/jour";
+					price.innerHTML = p.price + "€ / jour";
 				}
 			});
 		}
