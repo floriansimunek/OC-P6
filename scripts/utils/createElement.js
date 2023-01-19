@@ -25,17 +25,17 @@ function createImage(src, attributes) {
 }
 
 function createHeading(level, text, attributes) {
-	return createElement("h" + level, attributes, [
-		{ name: "textContent", value: text },
-	]);
-}
-
-function createDiv(attributes) {
-	return createElement("div", attributes);
+	return createElement("h" + level, attributes, [{ name: "textContent", value: text }]);
 }
 
 function createParagraph(text, attributes) {
-	return createElement("p", attributes, [
-		{ name: "textContent", value: text },
-	]);
+	return createElement("p", attributes, [{ name: "textContent", value: text }]);
+}
+
+function createButton(text, attributes) {
+	return createElement("button", attributes, [{ name: "textContent", value: text }]);
+}
+
+function createBlock(tag, attributes) {
+	return createElement(tag, attributes);
 }

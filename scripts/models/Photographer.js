@@ -12,6 +12,7 @@ class Photographer {
                 <path d="M9.125 18.35L7.85625 17.03C3.35 12.36 0.375 9.28 0.375 5.5C0.375 2.42 2.4925 0 5.1875 0C6.71 0 8.17125 0.81 9.125 2.09C10.0788 0.81 11.54 0 13.0625 0C15.7575 0 17.875 2.42 17.875 5.5C17.875 9.28 14.9 12.36 10.3938 17.04L9.125 18.35Z" fill="black"/>
             </svg>
         `;
+		this._idURL = new URL(document.location).searchParams.get("id");
 	}
 
 	get name() {
@@ -59,6 +60,7 @@ class Photographer {
 		const $photographersWrapper = document.querySelector(".photographer_section");
 
 		const article = document.createElement("article");
+
 		const link = createAnchor(this.page, [
 			{ name: "aria-label", value: "Link to the photographer page" },
 		]);
@@ -69,7 +71,8 @@ class Photographer {
 		const h2 = createHeading(2, this.name, [
 			{ name: "aria-label", value: "Photographer name" },
 		]);
-		const div = createDiv([
+
+		const div = createBlock("div", [
 			{ name: "class", value: "photographer_informations" },
 			{ name: "tabindex", value: "0" },
 			{ name: "aria-label", value: "Photographer informations" },
@@ -94,51 +97,38 @@ class Photographer {
 		if ($photographersWrapper) $photographersWrapper.append(article);
 	}
 
-	// createPhotographer2(photographers) {
-	// 	this._$photographersBanner = document.querySelector(".photograph-header");
-
-	// 	if (this._$photographersBanner) {
-	// 		photographers.filter((photographer) => {
-	// 			if (photographer.id == this._photographerId) {
-	// 				const p = new Photographer(photographer);
-	// 				this._$photographersBanner.innerHTML = p.createBannerDOM();
-	// 			}
-	// 		});
-	// 	}
-
-	// 	this._$photographerInformations = document.querySelector(".more-informations");
-
-	// 	if (this._$photographerInformations) {
-	// 		photographers.filter((photographer) => {
-	// 			if (photographer.id == this._photographerId) {
-	// 				const p = new Photographer(photographer);
-	// 				const likes = this._$photographerInformations.querySelector("#likes");
-	// 				const price = this._$photographerInformations.querySelector("#price");
-
-	// 				document.querySelector("#contact_modal #contact_modal_title").innerHTML += p.name;
-	// 				likes.innerHTML = p.getLikes(this._data.media);
-	// 				price.innerHTML = p.price + "€ / jour";
-	// 			}
-	// 		});
-	// 	}
-
-	// 	this.createMediasCards(this._data.photographers);
-	// }
-
 	createBannerDOM() {
-		const banner = `
-            <aside class="informations">
-                <h1 class="name" tabindex="0">${this.name}</h1>
-				<div tabindex="0">
-					<p class="location">${this.city}, ${this.country}</p>
-					<p class="slogan">${this.tagline}</p>
-				</div>
-            </aside>
-            <button class="contact_button">Contactez-moi</button>
-            <img tabindex="0" src="${this.picture}" alt="Portrait de ${this.name}">
-        `;
+		const $photographersBanner = document.querySelector(".photograph-header");
 
-		return banner;
+		const aside = createBlock("aside", [{ name: "class", value: "informations" }]);
+		const h1 = createHeading(1, this.name, [
+			{ name: "class", value: "name" },
+			{ name: "tabindex", value: "0" },
+		]);
+
+		const div = createBlock("div", [{ name: "tabindex", value: "0" }]);
+		const location = createParagraph(this.city + ", " + this.country, [
+			{ name: "class", value: "location" },
+			{ name: "aria-label", value: "Photographer location" },
+		]);
+		const slogan = createParagraph(this.tagline, [
+			{ name: "class", value: "slogan" },
+			{ name: "aria-label", value: "Photographer tagline" },
+		]);
+
+		const button = createButton("Contactez-moi", [
+			{ name: "class", value: "contact_button" },
+		]);
+		const img = createImage(this.picture, [
+			{ name: "alt", value: "Photo portrait de " + this.name },
+			{ name: "role", value: "img" },
+		]);
+
+		div.append(location, slogan);
+		aside.append(h1, div);
+
+		if ($photographersBanner && this._idURL == this.id)
+			$photographersBanner.append(aside, button, img);
 	}
 
 	getMedias(medias, id) {

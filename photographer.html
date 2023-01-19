@@ -32,19 +32,11 @@
 	<body>
 		<header>
 			<a href="./index.html" aria-label="Fisheye Home page"
-				><img
-					src="assets/images/logo.png"
-					class="logo"
-					role="img"
-					alt="Logo Fish Eye"
+				><img src="assets/images/logo.png" class="logo" role="img" alt="Logo Fish Eye"
 			/></a>
 		</header>
 		<main id="main">
-			<div class="photograph-header">
-				<button class="contact_button" aria-label="Open contact modal">
-					Contactez-moi
-				</button>
-			</div>
+			<div class="photograph-header"></div>
 			<div id="sorting_block" aria-label="Sort medias">
 				<label for="sorting" tabindex="0">Trier par</label>
 				<select name="" id="sorting">
@@ -84,9 +76,7 @@
 		<div id="contact_modal" role="dialog" tabindex="0">
 			<div class="modal" tabindex="1">
 				<header>
-					<h2 id="contact_modal_title" tabindex="2">
-						Contactez-moi<br />
-					</h2>
+					<h2 id="contact_modal_title" tabindex="2">Contactez-moi<br /></h2>
 					<img
 						id="closeContactModal"
 						src="assets/icons/close.svg"
@@ -97,39 +87,18 @@
 				<form class="contact-form">
 					<div>
 						<label for="firstname" tabindex="3">Prénom</label>
-						<input
-							type="text"
-							name="firstname"
-							id="firstname"
-							tabindex="4"
-						/>
+						<input type="text" name="firstname" id="firstname" tabindex="4" />
 
 						<label for="lastname" tabindex="5">Nom</label>
-						<input
-							type="text"
-							name="lastname"
-							id="lastname"
-							tabindex="6"
-						/>
+						<input type="text" name="lastname" id="lastname" tabindex="6" />
 
 						<label for="email" tabindex="7">Email</label>
-						<input
-							type="email"
-							name="email"
-							id="email"
-							tabindex="8"
-						/>
+						<input type="email" name="email" id="email" tabindex="8" />
 
 						<label for="message" tabindex="9">Votre message</label>
-						<textarea
-							name="message"
-							id="message"
-							tabindex="10"
-						></textarea>
+						<textarea name="message" id="message" tabindex="10"></textarea>
 					</div>
-					<button class="contact_button" tabindex="11">
-						Envoyer
-					</button>
+					<button class="contact_button" tabindex="11">Envoyer</button>
 				</form>
 			</div>
 		</div>
