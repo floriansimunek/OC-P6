@@ -44,12 +44,17 @@ class MediaModal {
 	}
 
 	open() {
+		this._$modal.setAttribute("aria-modal", "true");
 		this._$modal.classList.add("visible");
+		this._$modal.focus();
+		document.body.setAttribute("tabindex", "-1");
 	}
 
 	close() {
+		this._$modal.setAttribute("aria-modal", "false");
 		this._$modal.querySelector(".medias").innerHTML = "";
 		this._$modal.classList.remove("visible");
+		document.body.removeAttribute("tabindex");
 	}
 
 	prevMedia() {

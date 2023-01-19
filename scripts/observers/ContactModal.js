@@ -17,10 +17,13 @@ class ContactModal {
 	}
 
 	open() {
+		this._$modal.setAttribute("aria-modal", "true");
 		this._$modal.classList.add("visible");
+		this._$modal.focus();
 	}
 
 	close() {
+		this._$modal.setAttribute("aria-modal", "false");
 		this._$modal.classList.remove("visible");
 	}
 }
