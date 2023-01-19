@@ -78,7 +78,7 @@ class Photographer {
 				</div>
             </aside>
             <button class="contact_button">Contactez-moi</button>
-            <img tabindex="0" src="${this.picture}" alt="${this.name}">
+            <img tabindex="0" src="${this.picture}" alt="Portrait de ${this.name}">
         `;
 
 		return banner;

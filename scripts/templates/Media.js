@@ -14,6 +14,44 @@ class Media {
 		});
 	}
 
+	get id() {
+		return this._id;
+	}
+
+	get photographerId() {
+		return this._photographerId;
+	}
+
+	get title() {
+		return this._title;
+	}
+
+	get video() {
+		return this._video;
+	}
+
+	get url() {
+		if (this._image) {
+			return `./assets/images/${this._image}`;
+		} else if (this._video) {
+			return `./assets/videos/${this._video}`;
+		} else {
+			throw "Unknown media type";
+		}
+	}
+
+	get likes() {
+		return this._likes;
+	}
+
+	get date() {
+		return this._date;
+	}
+
+	get price() {
+		return this._price;
+	}
+
 	init() {
 		this._$mediaLikes = document.querySelector(`#media_${this.id} .likes`);
 
@@ -57,43 +95,5 @@ class Media {
 		} else {
 			throw "Unknown action";
 		}
-	}
-
-	get id() {
-		return this._id;
-	}
-
-	get photographerId() {
-		return this._photographerId;
-	}
-
-	get title() {
-		return this._title;
-	}
-
-	get video() {
-		return this._video;
-	}
-
-	get url() {
-		if (this._image) {
-			return `./assets/images/${this._image}`;
-		} else if (this._video) {
-			return `./assets/videos/${this._video}`;
-		} else {
-			throw "Unknown media type";
-		}
-	}
-
-	get likes() {
-		return this._likes;
-	}
-
-	get date() {
-		return this._date;
-	}
-
-	get price() {
-		return this._price;
 	}
 }
