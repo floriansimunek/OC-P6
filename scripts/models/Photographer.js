@@ -50,23 +50,80 @@ class Photographer {
 		return `./photographer.html?id=${this.id}`;
 	}
 
-	createCardDOM() {
-		const article = `
-            <article>
-                <a href="${this.page}">
-                    <img src="${this.picture}" alt="Photo portrait de ${this.name}">
-					<h2>${this.name}</h2>
-                </a>
-                <div class="photographer_informations" tabindex="0">
-                    <p class="location">${this.city}, ${this.country}</p>
-                    <p class="slogan">${this.tagline}</p>
-                    <p class="price">${this.price}€/jour</p>
-                </div>
-            </article>
-        `;
-
-		return article;
+	init() {
+		this.createCardDOM();
+		this.createBannerDOM();
 	}
+
+	createCardDOM() {
+		const $photographersWrapper = document.querySelector(".photographer_section");
+
+		const article = document.createElement("article");
+		const link = createAnchor(this.page, [
+			{ name: "aria-label", value: "Link to the photographer page" },
+		]);
+		const img = createImage(this.picture, [
+			{ name: "alt", value: "Photo portrait de " + this.name },
+			{ name: "role", value: "img" },
+		]);
+		const h2 = createHeading(2, this.name, [
+			{ name: "aria-label", value: "Photographer name" },
+		]);
+		const div = createDiv([
+			{ name: "class", value: "photographer_informations" },
+			{ name: "tabindex", value: "0" },
+			{ name: "aria-label", value: "Photographer informations" },
+		]);
+		const location = createParagraph(this.city + ", " + this.country, [
+			{ name: "class", value: "location" },
+			{ name: "aria-label", value: "Photographer location" },
+		]);
+		const slogan = createParagraph(this.tagline, [
+			{ name: "class", value: "slogan" },
+			{ name: "aria-label", value: "Photographer tagline" },
+		]);
+		const price = createParagraph(this.price + "€/jour", [
+			{ name: "class", value: "price" },
+			{ name: "aria-label", value: "Photographer price" },
+		]);
+
+		link.append(img, h2);
+		div.append(location, slogan, price);
+		article.append(link, div);
+
+		if ($photographersWrapper) $photographersWrapper.append(article);
+	}
+
+	// createPhotographer2(photographers) {
+	// 	this._$photographersBanner = document.querySelector(".photograph-header");
+
+	// 	if (this._$photographersBanner) {
+	// 		photographers.filter((photographer) => {
+	// 			if (photographer.id == this._photographerId) {
+	// 				const p = new Photographer(photographer);
+	// 				this._$photographersBanner.innerHTML = p.createBannerDOM();
+	// 			}
+	// 		});
+	// 	}
+
+	// 	this._$photographerInformations = document.querySelector(".more-informations");
+
+	// 	if (this._$photographerInformations) {
+	// 		photographers.filter((photographer) => {
+	// 			if (photographer.id == this._photographerId) {
+	// 				const p = new Photographer(photographer);
+	// 				const likes = this._$photographerInformations.querySelector("#likes");
+	// 				const price = this._$photographerInformations.querySelector("#price");
+
+	// 				document.querySelector("#contact_modal #contact_modal_title").innerHTML += p.name;
+	// 				likes.innerHTML = p.getLikes(this._data.media);
+	// 				price.innerHTML = p.price + "€ / jour";
+	// 			}
+	// 		});
+	// 	}
+
+	// 	this.createMediasCards(this._data.photographers);
+	// }
 
 	createBannerDOM() {
 		const banner = `
@@ -89,7 +146,9 @@ class Photographer {
 
 		medias.filter((media) => {
 			if (media.photographerId == id) {
-				const m = media.hasOwnProperty("image") ? new MediaFactory(media, "image") : new MediaFactory(media, "video");
+				const m = media.hasOwnProperty("image")
+					? new MediaFactory(media, "image")
+					: new MediaFactory(media, "video");
 				if (m._image) {
 					HTML += m.createPhotoCard();
 				} else if (m._video) {
