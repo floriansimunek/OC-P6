@@ -112,49 +112,4 @@ class Media {
 			throw "Unknown like type";
 		}
 	}
-
-	// init() {
-	// 	this._$mediaLikes = document.querySelector(`#media_${this.id} .likes`);
-
-	// 	this._$mediaLikes.addEventListener("click", () => {
-	// 		this.svg = this.svg.replace("black", "#901c1c");
-	// 		if (this._$mediaLikes.classList.contains("liked")) {
-	// 			this._$mediaLikes.classList.remove("liked");
-	// 			this.dislike();
-	// 		} else {
-	// 			this._$mediaLikes.classList.add("liked");
-	// 			this.like();
-	// 		}
-	// 	});
-	// }
-
-	// like() {
-	// 	this._likes++;
-	// 	this._$mediaLikes.innerHTML = this._likes + this.svg;
-	// 	this.updateLikes("INC");
-	// }
-
-	// dislike() {
-	// 	this._likes--;
-	// 	this._$mediaLikes.innerHTML = this._likes + this.svg;
-	// 	this.updateLikes("DEC");
-	// }
-
-	// updateLikes(action) {
-	// 	this._$likes = document.querySelector("#likes");
-	// 	this.svg = this.svg.replace("#901c1c", "black");
-
-	// 	if (action === "INC") {
-	// 		let n = parseInt(this._$likes.textContent);
-	// 		n++;
-
-	// 		this._$likes.innerHTML = n + this.svg;
-	// 	} else if (action === "DEC") {
-	// 		let n = parseInt(this._$likes.textContent);
-	// 		n--;
-	// 		this._$likes.innerHTML = n + this.svg;
-	// 	} else {
-	// 		throw "Unknown action";
-	// 	}
-	// }
 }
