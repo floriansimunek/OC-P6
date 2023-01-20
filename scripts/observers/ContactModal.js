@@ -1,9 +1,8 @@
 class ContactModal {
 	constructor() {
-		this._$modal = document.getElementById("contact_modal");
-		this._$contactBtn = document.querySelector(".contact_button");
+		this._$modal = document.querySelector("#contact_modal");
+		this._$contactBtn = document.querySelector("#open_contactModal");
 		this._$closeBtn = document.querySelector("#closeContactModal");
-		this.init();
 	}
 
 	init() {

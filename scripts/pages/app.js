@@ -8,7 +8,9 @@ class App {
 		this.Api = new Api("./data/photographers.json");
 		this._data = [];
 		this._Photographers = [];
-		this._photographerId = new URL(document.location).searchParams.get("id");
+		this._idURL = new URL(document.location).searchParams.get("id");
+		this._contactModal = new ContactModal();
+		this._mediaModal = new MediaModal();
 	}
 
 	async init() {
@@ -17,19 +19,22 @@ class App {
 		this._data.photographers.forEach((photographer, i) => {
 			this._Photographers.push(new Photographer(photographer, this._data.media));
 			this._Photographers[i].createCardDOM();
-			if (this._photographerId == this._Photographers[i].id) {
+			if (this._idURL == this._Photographers[i].id) {
 				this._Photographers[i].createBannerDOM();
 			}
 		});
 
+		this._contactModal.init();
+		this._mediaModal.init();
+
 		// this.createPhotographer2(this._data.photographers);
-		// if (this._photographerId) {
+		// if (this._idURL) {
 		// 	new MediaModal(this._$photographerMedias);
 		// 	new ContactModal();
 		// }
 		// this.sortMedias("LIKES");
 
-		// if (this._photographerId) {
+		// if (this._idURL) {
 		// 	this._$sorting = document.querySelector("#sorting");
 		// 	this._$sorting.addEventListener("change", (e) => {
 		// 		switch (e.target.value) {
@@ -54,9 +59,9 @@ class App {
 
 	// 	if (this._$photographerMedias) {
 	// 		photographers.filter((photographer) => {
-	// 			if (photographer.id == this._photographerId) {
+	// 			if (photographer.id == this._idURL) {
 	// 				const p = new Photographer(photographer);
-	// 				this._$photographerMedias.innerHTML = p.getMedias(this._data.media, this._photographerId);
+	// 				this._$photographerMedias.innerHTML = p.getMedias(this._data.media, this._idURL);
 	// 			}
 	// 		});
 	// 	}

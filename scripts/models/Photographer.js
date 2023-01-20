@@ -111,9 +111,6 @@ class Photographer {
 				{ name: "aria-label", value: "Photographer tagline" },
 			]);
 
-			const button = createButton("Contactez-moi", [
-				{ name: "class", value: "contact_button" },
-			]);
 			const img = createImage(this.picture, [
 				{ name: "alt", value: "Photo portrait de " + this.name },
 				{ name: "role", value: "img" },
@@ -121,7 +118,8 @@ class Photographer {
 
 			div.append(location, slogan);
 			aside.append(h1, div);
-			$photographersBanner.append(aside, button, img);
+			$photographersBanner.prepend(aside);
+			$photographersBanner.append(img);
 
 			this.getLikes();
 		}
@@ -153,9 +151,6 @@ class Photographer {
 	}
 
 	displayInformationsDOM() {
-		//				<div id="likes"></div>
-		//				<div id="price"></div>
-
 		const $moreInformations = document.querySelector(".more-informations");
 
 		if ($moreInformations) {
