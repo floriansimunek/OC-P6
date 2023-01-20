@@ -94,6 +94,8 @@ class Photographer {
 
 	createBannerDOM() {
 		const $photographersBanner = document.querySelector(".photograph-header");
+		const $modalTitle = document.querySelector("#contact_modal_title");
+		$modalTitle.innerHTML = "Contactez-moi<br />" + this.name;
 
 		if ($photographersBanner && this._idURL == this.id) {
 			const aside = createBlock("aside", [{ name: "class", value: "informations" }]);
