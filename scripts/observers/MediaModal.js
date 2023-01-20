@@ -16,19 +16,10 @@ class MediaModal {
 		this._$medias.forEach((media, i) => {
 			media.addEventListener("click", () => {
 				const mediaBlock = media.cloneNode(true);
-				const title = mediaBlock.getAttribute("data-title-media");
-
-				if (mediaBlock.querySelector("video")) {
-					mediaBlock.querySelector("video").setAttribute("controls", "");
-					mediaBlock.querySelector("video").setAttribute("autoplay", "");
-				}
-
-				const pTitle = createParagraph(title, [
-					{ name: "class", value: "media-title" },
-				]);
 
 				this._$mediasWrapper.append(mediaBlock);
-				this._$mediasWrapper.append(pTitle);
+				this._$mediasWrapper.append(this.createTitleBlock(mediaBlock));
+
 				this.open();
 			});
 		});
@@ -45,6 +36,19 @@ class MediaModal {
 			this.mediaWrapperReset();
 			this.close();
 		});
+	}
+
+	createTitleBlock(mediaBlock) {
+		const title = mediaBlock.getAttribute("data-title-media");
+
+		if (mediaBlock.querySelector("video")) {
+			mediaBlock.querySelector("video").setAttribute("controls", "");
+			mediaBlock.querySelector("video").setAttribute("autoplay", "");
+		}
+
+		const pTitle = createParagraph(title, [{ name: "class", value: "media-title" }]);
+
+		return pTitle;
 	}
 
 	open() {
@@ -74,6 +78,7 @@ class MediaModal {
 
 		this.mediaWrapperReset();
 		this._$mediasWrapper.append(mediaBlock);
+		this._$mediasWrapper.append(this.createTitleBlock(mediaBlock));
 	}
 
 	nextMedia() {
@@ -91,6 +96,7 @@ class MediaModal {
 
 		this.mediaWrapperReset();
 		this._$mediasWrapper.append(mediaBlock);
+		this._$mediasWrapper.append(this.createTitleBlock(mediaBlock));
 	}
 
 	mediaWrapperReset() {
