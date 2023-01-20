@@ -7,13 +7,10 @@ class Photographer {
 		this._tagline = photographers.tagline;
 		this._price = photographers.price;
 		this._portrait = photographers.portrait;
+
 		this._idURL = new URL(document.location).searchParams.get("id");
-		this.svg = `
-            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M9.125 18.35L7.85625 17.03C3.35 12.36 0.375 9.28 0.375 5.5C0.375 2.42 2.4925 0 5.1875 0C6.71 0 8.17125 0.81 9.125 2.09C10.0788 0.81 11.54 0 13.0625 0C15.7575 0 17.875 2.42 17.875 5.5C17.875 9.28 14.9 12.36 10.3938 17.04L9.125 18.35Z" fill="black"/>
-            </svg>
-        `;
 		this._medias = medias.filter((media) => media.photographerId == this._idURL);
+		this._likes = 0;
 	}
 
 	get name() {
@@ -126,11 +123,11 @@ class Photographer {
 			aside.append(h1, div);
 			$photographersBanner.append(aside, button, img);
 
-			this.getMedias();
+			this.getLikes();
 		}
 	}
 
-	getMedias() {
+	createMediaCardDOM() {
 		this._medias.forEach((media) => {
 			const m = media.hasOwnProperty("image")
 				? new MediaFactory(media, "image")
@@ -146,15 +143,38 @@ class Photographer {
 		});
 	}
 
-	// getLikes(medias) {
-	// 	let likes = 0;
+	getLikes() {
+		this._medias.forEach((media) => {
+			this._likes += media.likes;
+		});
 
-	// 	medias.filter((media) => {
-	// 		if (media.photographerId == this.id) {
-	// 			likes += media.likes;
-	// 		}
-	// 	});
+		this.displayInformationsDOM();
+		this.createMediaCardDOM();
+	}
 
-	// 	return likes + this.svg;
-	// }
+	displayInformationsDOM() {
+		//				<div id="likes"></div>
+		//				<div id="price"></div>
+
+		const $moreInformations = document.querySelector(".more-informations");
+
+		if ($moreInformations) {
+			const likes = createBlock("div", [{ name: "id", value: "likes" }]);
+			const price = createBlock("div", [{ name: "id", value: "price" }]);
+
+			const svg = createImage("./assets/icons/like_black.svg", [
+				{ name: "class", value: "likeIcon" },
+				{ name: "role", value: "img" },
+			]);
+			const span = createBlock("span", [{ name: "aria-hidden", value: "true" }]);
+
+			const pLikes = createParagraph(this._likes, []);
+			const pPrice = createParagraph(this.price + "€ / jour", []);
+
+			span.append(svg);
+			likes.append(pLikes, span);
+			price.append(pPrice);
+			$moreInformations.append(likes, price);
+		}
+	}
 }
