@@ -45,6 +45,7 @@ class MediaModal {
 
 		const pTitle = createParagraph($title.textContent, [
 			{ name: "class", value: "media-title" },
+			{ name: "tabindex", value: "0" },
 		]);
 		return pTitle;
 	}
@@ -52,12 +53,13 @@ class MediaModal {
 	open() {
 		this._$modal.setAttribute("aria-modal", "true");
 		this._$modal.classList.add("visible");
-		this._$modal.focus();
+		this.trapFocus();
 	}
 
 	close() {
 		this._$modal.setAttribute("aria-modal", "false");
 		this._$modal.classList.remove("visible");
+		document.body.focus();
 	}
 
 	prevMedia() {
@@ -100,5 +102,33 @@ class MediaModal {
 
 	mediaWrapperReset() {
 		this._$mediasWrapper.innerHTML = "";
+	}
+
+	trapFocus() {
+		this._$modal.focus();
+		var focusableEls = this._$modal.querySelectorAll("*");
+		var firstFocusableEl = focusableEls[0];
+		var lastFocusableEl = focusableEls[focusableEls.length - 1];
+		var KEYCODE_TAB = 9;
+
+		this._$modal.addEventListener("keydown", function (e) {
+			var isTabPressed = e.key === "Tab" || e.keyCode === KEYCODE_TAB;
+
+			if (!isTabPressed) {
+				return;
+			}
+
+			if (e.shiftKey) {
+				/* shift + tab */ if (document.activeElement === firstFocusableEl) {
+					lastFocusableEl.focus();
+					e.preventDefault();
+				}
+			} /* tab */ else {
+				if (document.activeElement === lastFocusableEl) {
+					firstFocusableEl.focus();
+					e.preventDefault();
+				}
+			}
+		});
 	}
 }

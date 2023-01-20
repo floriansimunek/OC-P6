@@ -13,6 +13,20 @@
 	background: #c4c4c440;
 }
 
+#contact_modal .modal {
+	position: relative;
+}
+
+#closeContactModal {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+}
+
+#closeContactModal:hover {
+	cursor: pointer;
+}
+
 #media_modal.visible {
 	display: flex;
 	justify-content: center;
@@ -25,14 +39,26 @@
 	transition: all 0.2s ease;
 }
 
+#media_modal .prev {
+	position: absolute;
+	left: -5%;
+	top: 50%;
+}
+
+#media_modal .next {
+	position: absolute;
+	right: -5%;
+	top: 50%;
+}
+
 #media_modal .arrow:hover {
 	cursor: pointer;
 	background: #00000010;
 }
 
 #media_modal .media_wrapper {
-	width: 80%;
-	height: 85vh;
+	width: 100%;
+	height: 100%;
 }
 
 #media_modal .media_wrapper .media {
@@ -55,13 +81,23 @@
 	cursor: pointer;
 	position: absolute;
 	top: 5%;
-	right: 5%;
+	right: -5%;
 }
 
 #contact_modal.visible {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#media_modal .modal2 {
+	position: relative;
+	width: 75%;
+	height: 85vh;
+}
+
+.like-icon {
+	margin-left: 5px;
 }
 
 .contact-form div #message {
