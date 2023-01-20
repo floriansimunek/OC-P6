@@ -5,8 +5,8 @@ class App {
 		this._Photographers = [];
 		this._idURL = new URL(document.location).searchParams.get("id");
 		if (this._idURL) {
-			this._contactModal = new ContactModal();
-			this._mediaModal = new MediaModal();
+			this._contactModal = new ModalFactory("contact");
+			this._mediaModal = new ModalFactory("media");
 		}
 	}
 
