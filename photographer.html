@@ -27,6 +27,7 @@
 		<script src="./scripts/factory/ModalFactory.js" defer></script>
 		<!-- UTILS -->
 		<script src="./scripts/utils/createElement.js" defer></script>
+		<script src="./scripts/utils/form.js" defer></script>
 		<!-- SCRIPT -->
 		<script src="./scripts/pages/app.js" defer></script>
 	</head>
@@ -82,7 +83,7 @@
 				<header>
 					<h2 id="contact_modal_title" tabindex="0"></h2>
 				</header>
-				<form class="contact-form">
+				<form class="contact-form" onsubmit="validate(event)">
 					<div>
 						<label for="firstname" tabindex="0">Prénom</label>
 						<input type="text" name="firstname" id="firstname" tabindex="0" />
