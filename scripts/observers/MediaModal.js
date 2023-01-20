@@ -1,104 +1,88 @@
 class MediaModal {
-	constructor(data) {
-		// this._$medias = data.querySelectorAll(".media_block");
-		// this._$modal = document.querySelector("#media_modal");
-		// this._$close = document.querySelector("#closeMediaModal");
-		// this._mediaSrc = null;
-		// this._mediaIndex = 0;
-		// this._$prevBtn = document.querySelector(".arrow.prev");
-		// this._$nextBtn = document.querySelector(".arrow.next");
+	constructor() {
+		this._$modal = document.querySelector("#media_modal");
+		this._$mediasList = document.querySelector(".photograph-medias-list");
+		this._$mediasWrapper = this._$modal.querySelector(".media_wrapper");
+		this._$medias = [];
+		this._$close = document.querySelector("#close_mediaModal");
+		this._$prevBtn = document.querySelector(".arrow.prev");
+		this._$nextBtn = document.querySelector(".arrow.next");
+		this._mediaIndex = 0;
 	}
 
 	init() {
-		console.log("Init MediaModal");
+		this._$medias = this._$mediasList.querySelectorAll(".media_block");
+
+		this._$medias.forEach((media, i) => {
+			media.addEventListener("click", () => {
+				this._$mediasWrapper.append(media.cloneNode(true));
+				this.open();
+			});
+		});
+
+		this._$prevBtn.addEventListener("click", () => {
+			this.prevMedia();
+		});
+
+		this._$nextBtn.addEventListener("click", () => {
+			this.nextMedia();
+		});
+
+		this._$close.addEventListener("click", () => {
+			this.mediaWrapperReset();
+			this.close();
+		});
 	}
 
-	// init() {
-	// 	this._$medias.forEach((media, i) => {
-	// 		media.querySelector(".media").addEventListener("click", () => {
-	// 			if (media.querySelector(".media").classList.contains("image")) {
-	// 				this._$modal.querySelector(".medias").appendChild(media.querySelector(".media").cloneNode(true));
-	// 				this._$modal.querySelector(".medias").appendChild(media.querySelector(".title").cloneNode(true));
-	// 			} else if (media.querySelector(".media").classList.contains("video")) {
-	// 				const video = media.querySelector(".media").cloneNode(true);
-	// 				video.setAttribute("controls", "");
-	// 				video.setAttribute("autoplay", "");
+	open() {
+		this._$modal.setAttribute("aria-modal", "true");
+		this._$modal.classList.add("visible");
+		this._$modal.focus();
+	}
 
-	// 				this._$modal.querySelector(".medias").appendChild(video);
-	// 				this._$modal.querySelector(".medias").appendChild(media.querySelector(".title").cloneNode(true));
-	// 			} else {
-	// 				throw "Unknown media type";
-	// 			}
+	close() {
+		this._$modal.setAttribute("aria-modal", "false");
+		this._$modal.classList.remove("visible");
+	}
 
-	// 			this.open();
+	prevMedia() {
+		this._mediaIndex--;
 
-	// 			this._$prevBtn.addEventListener("click", () => {
-	// 				this.prevMedia();
-	// 			});
-	// 			this._$nextBtn.addEventListener("click", () => {
-	// 				this.nextMedia();
-	// 			});
-	// 		});
-	// 	});
+		if (this._mediaIndex < 0) {
+			this._mediaIndex = this._$medias.length - 1;
+		}
 
-	// 	this._$close.addEventListener("click", () => {
-	// 		this.close();
-	// 	});
-	// }
+		const mediaBlock = this._$medias[this._mediaIndex].cloneNode(true);
 
-	// open() {
-	// 	this._$modal.setAttribute("aria-modal", "true");
-	// 	this._$modal.classList.add("visible");
-	// 	this._$modal.focus();
-	// 	document.body.setAttribute("tabindex", "-1");
-	// }
+		if (mediaBlock.querySelector("video")) {
+			mediaBlock.querySelector("video").setAttribute("controls", "");
+			mediaBlock.querySelector("video").setAttribute("autoplay", "");
+		}
 
-	// close() {
-	// 	this._$modal.setAttribute("aria-modal", "false");
-	// 	this._$modal.querySelector(".medias").innerHTML = "";
-	// 	this._$modal.classList.remove("visible");
-	// 	document.body.removeAttribute("tabindex");
-	// }
+		this.mediaWrapperReset();
+		this._$mediasWrapper.append(mediaBlock);
+	}
 
-	// prevMedia() {
-	// 	this._mediaIndex--;
-	// 	let media;
+	nextMedia() {
+		this._mediaIndex++;
 
-	// 	if (this._mediaIndex < 0) {
-	// 		this._mediaIndex = this._$medias.length - 1;
-	// 	}
+		if (this._mediaIndex >= this._$medias.length) {
+			this._mediaIndex = 0;
+		}
 
-	// 	if (this._$medias[this._mediaIndex].querySelector(".media").classList.contains("video")) {
-	// 		media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
-	// 		media.setAttribute("controls", "");
-	// 		media.setAttribute("autoplay", "");
-	// 	} else {
-	// 		media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
-	// 	}
+		const mediaBlock = this._$medias[this._mediaIndex].cloneNode(true);
+		if (mediaBlock.querySelector("video")) {
+			mediaBlock.querySelector("video").setAttribute("controls", "");
+			mediaBlock.querySelector("video").setAttribute("autoplay", "");
+		}
 
-	// 	this._$modal.querySelector(".medias").innerHTML = "";
-	// 	this._$modal.querySelector(".medias").appendChild(media);
-	// 	this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".title").cloneNode(true));
-	// }
+		console.log(mediaBlock);
 
-	// nextMedia() {
-	// 	this._mediaIndex++;
-	// 	let media;
+		this.mediaWrapperReset();
+		this._$mediasWrapper.append(mediaBlock);
+	}
 
-	// 	if (this._mediaIndex >= this._$medias.length) {
-	// 		this._mediaIndex = 0;
-	// 	}
-
-	// 	if (this._$medias[this._mediaIndex].querySelector(".media").classList.contains("video")) {
-	// 		media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
-	// 		media.setAttribute("controls", "");
-	// 		media.setAttribute("autoplay", "");
-	// 	} else {
-	// 		media = this._$medias[this._mediaIndex].querySelector(".media").cloneNode(true);
-	// 	}
-
-	// 	this._$modal.querySelector(".medias").innerHTML = "";
-	// 	this._$modal.querySelector(".medias").appendChild(media);
-	// 	this._$modal.querySelector(".medias").appendChild(this._$medias[this._mediaIndex].querySelector(".title").cloneNode(true));
-	// }
+	mediaWrapperReset() {
+		this._$mediasWrapper.innerHTML = "";
+	}
 }
