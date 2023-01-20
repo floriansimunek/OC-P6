@@ -32,10 +32,12 @@ class Photo extends Media {
 				{ name: "aria-label", value: "Title of the image" },
 			]);
 
-			const div3 = createBlock("div", [{ name: "class", value: "likes-block" }]);
+			const div3 = createBlock("div", [
+				{ name: "class", value: "likes-block" },
+				{ name: "tabindex", value: "0" },
+			]);
 			const likes = createParagraph(this.likes, [
 				{ name: "class", value: "likes" },
-				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Likes counter of the image" },
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
