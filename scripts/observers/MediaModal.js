@@ -11,16 +11,24 @@ class MediaModal {
 	}
 
 	init() {
-		this._$medias = this._$mediasList.querySelectorAll(".media_block");
+		this._$medias = this._$mediasList.querySelectorAll(".media_block .media");
 
 		this._$medias.forEach((media, i) => {
 			media.addEventListener("click", () => {
 				const mediaBlock = media.cloneNode(true);
+				const title = mediaBlock.getAttribute("data-title-media");
+
 				if (mediaBlock.querySelector("video")) {
 					mediaBlock.querySelector("video").setAttribute("controls", "");
 					mediaBlock.querySelector("video").setAttribute("autoplay", "");
 				}
+
+				const pTitle = createParagraph(title, [
+					{ name: "class", value: "media-title" },
+				]);
+
 				this._$mediasWrapper.append(mediaBlock);
+				this._$mediasWrapper.append(pTitle);
 				this.open();
 			});
 		});
@@ -80,8 +88,6 @@ class MediaModal {
 			mediaBlock.querySelector("video").setAttribute("controls", "");
 			mediaBlock.querySelector("video").setAttribute("autoplay", "");
 		}
-
-		console.log(mediaBlock);
 
 		this.mediaWrapperReset();
 		this._$mediasWrapper.append(mediaBlock);

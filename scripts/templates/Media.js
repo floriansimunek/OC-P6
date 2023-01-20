@@ -8,9 +8,9 @@ class Media {
 		this._likes = data.likes;
 		this._date = data.date;
 		this._price = data.price;
-		// window.addEventListener("load", () => {
-		// 	this.init();
-		// });
+		this.init();
+		this._$mediaBlock = null;
+		this._liked = false;
 	}
 
 	get id() {
@@ -57,11 +57,59 @@ class Media {
 
 	createCardDOM() {
 		if (this.image) {
-			this.createPhotoCard();
+			this._$mediasBlock = this.createPhotoCard();
 		} else if (this.video) {
-			this.createVideoCard();
+			this._$mediasBlock = this.createVideoCard();
 		} else {
 			throw "Unknown media type";
+		}
+	}
+
+	init() {
+		window.addEventListener("load", () => {
+			this._$mediaBlock = document.querySelector("#media_" + this.id);
+			const $likeIcon = this._$mediaBlock.querySelector(".like-icon");
+
+			$likeIcon.addEventListener("click", () => {
+				if (this._liked) {
+					this.dislike();
+				} else {
+					this.like();
+				}
+			});
+		});
+	}
+
+	like() {
+		this._liked = true;
+		this._likes++;
+
+		const $likesCounter = this._$mediaBlock.querySelector(".likes");
+		$likesCounter.textContent = this._likes;
+		this.updateLikes("INC");
+	}
+
+	dislike() {
+		this._liked = false;
+		this._likes--;
+
+		const $likesCounter = this._$mediaBlock.querySelector(".likes");
+		$likesCounter.textContent = this._likes;
+		this.updateLikes("DEC");
+	}
+
+	updateLikes(type) {
+		let $photographerLikes = document.querySelector("#likes");
+		let likes = parseInt($photographerLikes.textContent);
+
+		if (type === "INC") {
+			likes++;
+			$photographerLikes.textContent = likes;
+		} else if (type === "DEC") {
+			likes--;
+			$photographerLikes.textContent = likes;
+		} else {
+			throw "Unknown like type";
 		}
 	}
 

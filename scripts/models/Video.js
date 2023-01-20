@@ -19,6 +19,7 @@ class Video extends Media {
 				{ name: "class", value: "media video" },
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Open media modal" },
+				{ name: "data-title-media", value: this.title },
 			]);
 			const source = createBlock("source", [
 				{ name: "src", value: this.url },
@@ -35,23 +36,24 @@ class Video extends Media {
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Title of the video" },
 			]);
+
+			const div3 = createBlock("div", [{ name: "class", value: "likes-block" }]);
 			const likes = createParagraph(this.likes, [
 				{ name: "class", value: "likes" },
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Likes counter of the video" },
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
-				{ name: "class", value: "likeIcon" },
+				{ name: "class", value: "like-icon" },
 				{ name: "role", value: "img" },
 			]);
-			const span = createBlock("span", [{ name: "aria-hidden", value: "true" }]);
 
 			video.append(source, meta);
-			span.append(svg);
-			likes.append(span);
-			div2.append(title, likes);
+			div3.append(likes, svg);
+			div2.append(title, div3);
 			div.append(video, div2);
 			$photographerMediasList.append(div);
+			return div;
 		}
 	}
 }

@@ -151,20 +151,19 @@ class Photographer {
 		const $moreInformations = document.querySelector(".more-informations");
 
 		if ($moreInformations) {
-			const likes = createBlock("div", [{ name: "id", value: "likes" }]);
+			const likes = createBlock("div", [{ name: "id", value: "likes-counter" }]);
 			const price = createBlock("div", [{ name: "id", value: "price" }]);
 
 			const svg = createImage("./assets/icons/like_black.svg", [
-				{ name: "class", value: "likeIcon" },
+				{ name: "class", value: "like-icon" },
 				{ name: "role", value: "img" },
+				{ name: "aria-hidden", value: "true" },
 			]);
-			const span = createBlock("span", [{ name: "aria-hidden", value: "true" }]);
 
-			const pLikes = createParagraph(this._likes, []);
+			const pLikes = createParagraph(this._likes, [{ name: "id", value: "likes" }]);
 			const pPrice = createParagraph(this.price + "€ / jour", []);
 
-			span.append(svg);
-			likes.append(pLikes, span);
+			likes.append(pLikes, svg);
 			price.append(pPrice);
 			$moreInformations.append(likes, price);
 		}

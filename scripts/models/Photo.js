@@ -20,6 +20,7 @@ class Photo extends Media {
 				{ name: "tabindex", value: "0" },
 				{ name: "alt", value: this.title },
 				{ name: "aria-label", value: "Open media modal" },
+				{ name: "data-title-media", value: this.title },
 			]);
 
 			const div2 = createBlock("div", [{ name: "class", value: "media-informations" }]);
@@ -28,22 +29,24 @@ class Photo extends Media {
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Title of the image" },
 			]);
+
+			const div3 = createBlock("div", [{ name: "class", value: "likes-block" }]);
 			const likes = createParagraph(this.likes, [
 				{ name: "class", value: "likes" },
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Likes counter of the image" },
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
-				{ name: "class", value: "likeIcon" },
+				{ name: "class", value: "like-icon" },
 				{ name: "role", value: "img" },
+				{ name: "aria-hidden", value: "true" },
 			]);
-			const span = createBlock("span", [{ name: "aria-hidden", value: "true" }]);
 
-			span.append(svg);
-			likes.append(span);
-			div2.append(title, likes);
+			div3.append(likes, svg);
+			div2.append(title, div3);
 			div.append(img, div2);
 			$photographerMediasList.append(div);
+			return div;
 		}
 	}
 }
