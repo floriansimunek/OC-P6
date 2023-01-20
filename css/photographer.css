@@ -125,6 +125,13 @@
 	border-radius: 5px;
 }
 
+.photograph-medias-list .likeIcon {
+	width: unset;
+	height: unset;
+	object-fit: unset;
+	border-radius: unset;
+}
+
 #sorting_block {
 	margin-left: 100px;
 	margin-top: 20px;
