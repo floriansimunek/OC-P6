@@ -15,7 +15,12 @@ class MediaModal {
 
 		this._$medias.forEach((media, i) => {
 			media.addEventListener("click", () => {
-				this._$mediasWrapper.append(media.cloneNode(true));
+				const mediaBlock = media.cloneNode(true);
+				if (mediaBlock.querySelector("video")) {
+					mediaBlock.querySelector("video").setAttribute("controls", "");
+					mediaBlock.querySelector("video").setAttribute("autoplay", "");
+				}
+				this._$mediasWrapper.append(mediaBlock);
 				this.open();
 			});
 		});

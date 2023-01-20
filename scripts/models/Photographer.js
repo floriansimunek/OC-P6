@@ -11,6 +11,7 @@ class Photographer {
 		this._idURL = new URL(document.location).searchParams.get("id");
 		this._medias = medias.filter((media) => media.photographerId == this._idURL);
 		this._likes = 0;
+		this._$sorting = document.querySelector("#sorting");
 	}
 
 	get name() {
@@ -120,12 +121,10 @@ class Photographer {
 			aside.append(h1, div);
 			$photographersBanner.prepend(aside);
 			$photographersBanner.append(img);
-
-			this.getLikes();
 		}
 	}
 
-	createMediaCardDOM() {
+	createMediasCardDOM() {
 		this._medias.forEach((media) => {
 			const m = media.hasOwnProperty("image")
 				? new MediaFactory(media, "image")
@@ -145,12 +144,10 @@ class Photographer {
 		this._medias.forEach((media) => {
 			this._likes += media.likes;
 		});
-
-		this.displayInformationsDOM();
-		this.createMediaCardDOM();
 	}
 
 	displayInformationsDOM() {
+		this.getLikes();
 		const $moreInformations = document.querySelector(".more-informations");
 
 		if ($moreInformations) {
@@ -170,6 +167,73 @@ class Photographer {
 			likes.append(pLikes, span);
 			price.append(pPrice);
 			$moreInformations.append(likes, price);
+		}
+	}
+
+	sortMedias(type) {
+		sort(type);
+		this._$sorting.addEventListener("change", (e) => {
+			console.log(e.target.value);
+			switch (e.target.value) {
+				case "date":
+					type = "DATES";
+					sort(type);
+					break;
+				case "likes":
+					type = "LIKES";
+					sort(type);
+					break;
+				case "title":
+					type = "TITLES";
+					sort(type);
+					break;
+				default:
+					throw "Unknown sorter value";
+			}
+		});
+
+		function sort(type) {
+			const $mediasWrapper = document.querySelector(".photograph-medias-list");
+
+			if (type === "DATES") {
+				let $date = document.querySelectorAll("[data-date]");
+				let dateArray = Array.from($date);
+				let dateSorted = dateArray.sort(comparatorDates);
+
+				dateSorted.forEach((el) => {
+					$mediasWrapper.appendChild(el);
+				});
+			} else if (type === "TITLES") {
+				let $title = document.querySelectorAll("[data-title]");
+				let titleArray = Array.from($title);
+				let titleSorted = titleArray.sort(comparatorTitles);
+
+				titleSorted.forEach((el) => {
+					$mediasWrapper.appendChild(el);
+				});
+			} else if (type === "LIKES") {
+				let $likes = document.querySelectorAll("[data-likes]");
+				let likesArray = Array.from($likes);
+				let likesSorted = likesArray.sort(comparatorLikes);
+
+				likesSorted.forEach((el) => {
+					$mediasWrapper.appendChild(el);
+				});
+			} else {
+				throw "Unknown sorting type";
+			}
+
+			function comparatorDates(a, b) {
+				return new Date(b.dataset.date) - new Date(a.dataset.date);
+			}
+
+			function comparatorTitles(a, b) {
+				return a.dataset.title.localeCompare(b.dataset.title);
+			}
+
+			function comparatorLikes(a, b) {
+				return b.dataset.likes - a.dataset.likes;
+			}
 		}
 	}
 }
