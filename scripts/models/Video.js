@@ -10,10 +10,10 @@ class Video extends Media {
 			const div = createBlock("div", [
 				{ name: "class", value: "media_block" },
 				{ name: "id", value: "media_" + this.id },
-				{ name: "role", value: "video" },
 				{ name: "data-title", value: this.title },
 				{ name: "data-date", value: this.date },
 				{ name: "data-likes", value: this.likes },
+				{ name: "role", value: "video" },
 			]);
 			const video = createBlock("video", [
 				{ name: "class", value: "media video" },
