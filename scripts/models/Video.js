@@ -15,11 +15,14 @@ class Video extends Media {
 				{ name: "data-likes", value: this.likes },
 				{ name: "role", value: "video" },
 			]);
+
 			const video = createBlock("video", [
 				{ name: "class", value: "media video" },
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Open media modal" },
 				{ name: "data-title-media", value: this.title },
+				{ name: "data-type", value: "video" },
+				{ name: "data-id", value: this.id },
 			]);
 			const source = createBlock("source", [
 				{ name: "src", value: this.url },

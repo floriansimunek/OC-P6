@@ -21,6 +21,8 @@ class Photo extends Media {
 				{ name: "alt", value: this.title },
 				{ name: "aria-label", value: "Open media modal" },
 				{ name: "data-title-media", value: this.title },
+				{ name: "data-type", value: "image" },
+				{ name: "data-id", value: this.id },
 			]);
 
 			const div2 = createBlock("div", [{ name: "class", value: "media-informations" }]);

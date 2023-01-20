@@ -15,10 +15,10 @@ class MediaModal {
 
 		this._$medias.forEach((media, i) => {
 			media.addEventListener("click", () => {
-				const mediaBlock = media.cloneNode(true);
-
-				this._$mediasWrapper.append(mediaBlock);
-				this._$mediasWrapper.append(this.createTitleBlock(mediaBlock));
+				const $media = media.cloneNode(true);
+				this.addVideoAttributes($media);
+				this._$mediasWrapper.append($media);
+				this._$mediasWrapper.append(this.createTitleBlock($media));
 
 				this.open();
 			});
@@ -38,16 +38,14 @@ class MediaModal {
 		});
 	}
 
-	createTitleBlock(mediaBlock) {
-		const title = mediaBlock.getAttribute("data-title-media");
+	createTitleBlock($media) {
+		let mediaId = $media.getAttribute("data-id");
+		let $mediaBlock = document.querySelector("#media_" + mediaId);
+		let $title = $mediaBlock.querySelector(".title");
 
-		if (mediaBlock.querySelector("video")) {
-			mediaBlock.querySelector("video").setAttribute("controls", "");
-			mediaBlock.querySelector("video").setAttribute("autoplay", "");
-		}
-
-		const pTitle = createParagraph(title, [{ name: "class", value: "media-title" }]);
-
+		const pTitle = createParagraph($title.textContent, [
+			{ name: "class", value: "media-title" },
+		]);
 		return pTitle;
 	}
 
@@ -69,16 +67,12 @@ class MediaModal {
 			this._mediaIndex = this._$medias.length - 1;
 		}
 
-		const mediaBlock = this._$medias[this._mediaIndex].cloneNode(true);
-
-		if (mediaBlock.querySelector("video")) {
-			mediaBlock.querySelector("video").setAttribute("controls", "");
-			mediaBlock.querySelector("video").setAttribute("autoplay", "");
-		}
+		const $media = this._$medias[this._mediaIndex].cloneNode(true);
 
 		this.mediaWrapperReset();
-		this._$mediasWrapper.append(mediaBlock);
-		this._$mediasWrapper.append(this.createTitleBlock(mediaBlock));
+		this.addVideoAttributes($media);
+		this._$mediasWrapper.append($media);
+		this._$mediasWrapper.append(this.createTitleBlock($media));
 	}
 
 	nextMedia() {
@@ -88,15 +82,20 @@ class MediaModal {
 			this._mediaIndex = 0;
 		}
 
-		const mediaBlock = this._$medias[this._mediaIndex].cloneNode(true);
-		if (mediaBlock.querySelector("video")) {
-			mediaBlock.querySelector("video").setAttribute("controls", "");
-			mediaBlock.querySelector("video").setAttribute("autoplay", "");
-		}
+		const $media = this._$medias[this._mediaIndex].cloneNode(true);
 
 		this.mediaWrapperReset();
-		this._$mediasWrapper.append(mediaBlock);
-		this._$mediasWrapper.append(this.createTitleBlock(mediaBlock));
+		this.addVideoAttributes($media);
+		this._$mediasWrapper.append($media);
+		this._$mediasWrapper.append(this.createTitleBlock($media));
+	}
+
+	addVideoAttributes($media) {
+		if ($media.getAttribute("data-type") == "video") {
+			$media.setAttribute("controls", "");
+			$media.setAttribute("autoplay", "");
+			$media.setAttribute("muted", "");
+		}
 	}
 
 	mediaWrapperReset() {

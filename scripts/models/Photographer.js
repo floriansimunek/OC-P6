@@ -115,6 +115,7 @@ class Photographer {
 			const img = createImage(this.picture, [
 				{ name: "alt", value: "Photo portrait de " + this.name },
 				{ name: "role", value: "img" },
+				{ name: "tabindex", value: "0" },
 			]);
 
 			div.append(location, slogan);
@@ -172,7 +173,6 @@ class Photographer {
 	sortMedias(type) {
 		sort(type);
 		this._$sorting.addEventListener("change", (e) => {
-			console.log(e.target.value);
 			switch (e.target.value) {
 				case "date":
 					type = "DATES";
