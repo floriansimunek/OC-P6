@@ -57,7 +57,7 @@ class Photographer {
 			const article = document.createElement("article");
 
 			const link = createAnchor(this.page, [
-				{ name: "aria-label", value: "Link to the photographer page" },
+				{ name: "aria-label", value: "Lien vers la page du photographe " + this.name },
 			]);
 			const img = createImage(this.picture, [
 				{ name: "alt", value: "Photo portrait de " + this.name },
@@ -70,19 +70,20 @@ class Photographer {
 			const div = createBlock("div", [
 				{ name: "class", value: "photographer_informations" },
 				{ name: "tabindex", value: "0" },
-				{ name: "aria-label", value: "Photographer informations" },
+				{ name: "aria-label", value: "Informations du photographe" },
 			]);
 			const location = createParagraph(this.city + ", " + this.country, [
 				{ name: "class", value: "location" },
-				{ name: "aria-label", value: "Photographer location" },
+				{ name: "lang", value: "en" },
+				{ name: "aria-label", value: "Localisation du photographe" },
 			]);
 			const slogan = createParagraph(this.tagline, [
 				{ name: "class", value: "slogan" },
-				{ name: "aria-label", value: "Photographer tagline" },
+				{ name: "aria-label", value: "Slogan du photographe" },
 			]);
 			const price = createParagraph(this.price + "€/jour", [
 				{ name: "class", value: "price" },
-				{ name: "aria-label", value: "Photographer price" },
+				{ name: "aria-label", value: "Prix journalier du photographe" },
 			]);
 
 			link.append(img, h2);
