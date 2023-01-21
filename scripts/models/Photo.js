@@ -39,11 +39,13 @@ class Photo extends Media {
 			const likes = createParagraph(this.likes, [
 				{ name: "class", value: "likes" },
 				{ name: "aria-label", value: "Likes counter of the image" },
+				{ name: "tabindex", value: "0" },
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
 				{ name: "class", value: "like-icon" },
 				{ name: "role", value: "img" },
 				{ name: "aria-hidden", value: "true" },
+				{ name: "tabindex", value: "0" },
 			]);
 
 			div3.append(likes, svg);

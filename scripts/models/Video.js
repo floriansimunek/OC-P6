@@ -47,10 +47,12 @@ class Video extends Media {
 			const likes = createParagraph(this.likes, [
 				{ name: "class", value: "likes" },
 				{ name: "aria-label", value: "Likes counter of the video" },
+				{ name: "tabindex", value: "0" },
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
 				{ name: "class", value: "like-icon" },
 				{ name: "role", value: "img" },
+				{ name: "tabindex", value: "0" },
 			]);
 
 			video.append(source, meta);

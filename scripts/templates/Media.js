@@ -70,12 +70,26 @@ class Media {
 			this._$mediaBlock = document.querySelector("#media_" + this.id);
 			const $likeIcon = this._$mediaBlock.querySelector(".like-icon");
 
-			$likeIcon.addEventListener("click", () => {
-				if (this._liked) {
-					this.dislike();
-				} else {
-					this.like();
-				}
+			["click", "keypress"].forEach((event) => {
+				$likeIcon.addEventListener(event, (e) => {
+					const that = this;
+
+					function likeOrDislike() {
+						if (that._liked) {
+							that.dislike();
+						} else {
+							that.like();
+						}
+					}
+
+					if (event == "click") {
+						likeOrDislike();
+					}
+
+					if (event == "keypress" && e.key == "Enter") {
+						likeOrDislike();
+					}
+				});
 			});
 		});
 	}
