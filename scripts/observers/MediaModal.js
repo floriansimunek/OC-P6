@@ -14,13 +14,26 @@ class MediaModal {
 		this._$medias = this._$mediasList.querySelectorAll(".media_block .media");
 
 		this._$medias.forEach((media, i) => {
-			media.addEventListener("click", () => {
-				const $media = media.cloneNode(true);
-				this.addVideoAttributes($media);
-				this._$mediasWrapper.append($media);
-				this._$mediasWrapper.append(this.createTitleBlock($media));
+			["click", "keypress"].forEach((event) => {
+				media.addEventListener(event, (e) => {
+					const that = this;
 
-				this.open();
+					function appendMediaInModal() {
+						const $media = media.cloneNode(true);
+						that.addVideoAttributes($media);
+						that._$mediasWrapper.append($media);
+						that._$mediasWrapper.append(that.createTitleBlock($media));
+						that.open();
+					}
+
+					if (event == "click") {
+						appendMediaInModal();
+					}
+
+					if (event == "keypress" && e.key == "Enter") {
+						appendMediaInModal();
+					}
+				});
 			});
 		});
 
@@ -33,7 +46,6 @@ class MediaModal {
 		});
 
 		this._$close.addEventListener("click", () => {
-			this.mediaWrapperReset();
 			this.close();
 		});
 	}
@@ -65,6 +77,7 @@ class MediaModal {
 	close() {
 		this._$modal.setAttribute("aria-modal", "false");
 		this._$modal.classList.remove("visible");
+		this.mediaWrapperReset();
 		document.body.focus();
 	}
 
