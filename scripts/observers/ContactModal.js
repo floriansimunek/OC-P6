@@ -16,6 +16,12 @@ class ContactModal {
 	}
 
 	open() {
+		document.onkeydown = (e) => {
+			e = e || window.event;
+			if (e.key === "Escape") {
+				this.close();
+			}
+		};
 		this._$modal.setAttribute("aria-modal", "true");
 		this._$modal.classList.add("visible");
 		this.trapFocus();
