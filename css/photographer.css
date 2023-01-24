@@ -107,6 +107,22 @@
 	border: none;
 }
 
+.contact-form div[data-error]::after {
+	content: attr(data-error);
+	font-size: 1em;
+	color: #901c1c;
+	display: none;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	text-align: left;
+	line-height: 0.3;
+	transition: 0.3s;
+}
+
+.contact-form div[data-error-visible="true"]::after {
+	display: block;
+}
+
 .photograph-header {
 	background-color: #fafafa;
 	height: 300px;
@@ -316,7 +332,6 @@ form div {
 	flex-direction: column;
 	width: 100%;
 	align-items: self-start;
-	margin-bottom: 26px;
 }
 
 form input {
@@ -324,4 +339,8 @@ form input {
 	height: 68px;
 	border: none;
 	border-radius: 5px;
+}
+
+form button {
+	margin-top: 26px;
 }

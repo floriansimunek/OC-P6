@@ -7,6 +7,8 @@ class App {
 		if (this._idURL) {
 			this._contactModal = new ModalFactory("contact");
 			this._mediaModal = new ModalFactory("media");
+			this._$contactForm = document.querySelector("#contact-form");
+			this._contactForm = new FormValidator(this._$contactForm);
 		}
 	}
 
@@ -25,6 +27,10 @@ class App {
 				this._Photographers[i].sortMedias("LIKES");
 				this._contactModal.init();
 				this._mediaModal.init();
+				this._$contactForm.addEventListener("submit", (e) => {
+					e.preventDefault();
+					this._contactForm.validateForm();
+				});
 			}
 		});
 	}
