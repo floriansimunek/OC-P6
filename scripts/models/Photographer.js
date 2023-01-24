@@ -160,6 +160,7 @@ class Photographer {
 
 			const svg = createImage("./assets/icons/like_black.svg", [
 				{ name: "class", value: "like-icon" },
+				{ name: "alt", value: "like icon" },
 				{ name: "role", value: "img" },
 				{ name: "aria-hidden", value: "true" },
 			]);

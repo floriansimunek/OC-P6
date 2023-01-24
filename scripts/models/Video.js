@@ -51,6 +51,7 @@ class Video extends Media {
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
 				{ name: "class", value: "like-icon" },
+				{ name: "alt", value: "like icon, click to like video" },
 				{ name: "role", value: "img" },
 				{ name: "tabindex", value: "0" },
 			]);

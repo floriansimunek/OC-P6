@@ -43,6 +43,7 @@ class Photo extends Media {
 			]);
 			const svg = createImage("./assets/icons/like_red.svg", [
 				{ name: "class", value: "like-icon" },
+				{ name: "alt", value: "like icon, click to like image" },
 				{ name: "role", value: "img" },
 				{ name: "aria-hidden", value: "true" },
 				{ name: "tabindex", value: "0" },
