@@ -11,7 +11,7 @@ class App {
 	}
 
 	async init() {
-		this._data = await this._Api.getData();
+		await this.getDatas();
 
 		this._data.photographers.forEach((photographer, i) => {
 			this._Photographers.push(new Photographer(photographer, this._data.media));
@@ -27,6 +27,14 @@ class App {
 				this._mediaModal.init();
 			}
 		});
+	}
+
+	async getDatas() {
+		try {
+			this._data = await this._Api.getData();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
 
