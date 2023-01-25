@@ -41,7 +41,6 @@ class FormValidator {
 	}
 
 	validateForm() {
-		this._errors = null;
 		const formData = new FormData(this._$form);
 
 		this.validateFirstName(formData.get("firstname"));
@@ -55,10 +54,11 @@ class FormValidator {
 			console.log("email: ", formData.get("email"));
 			console.log("message: ", formData.get("message"));
 		}
+		this._errors = {};
 	}
 
 	displayErrors() {
-		if (!this._errors) {
+		if (this._errors == {}) {
 			return false;
 		}
 
