@@ -33,14 +33,16 @@ class Video extends Media {
 				{ name: "content", value: this.title },
 			]);
 
-			const div2 = createBlock("div", [{ name: "class", value: "media-informations" }]);
+			const informations = createBlock("div", [
+				{ name: "class", value: "media-informations" },
+			]);
 			const title = createParagraph(this.title, [
 				{ name: "class", value: "title" },
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Title of the video" },
 			]);
 
-			const div3 = createBlock("div", [
+			const likesBlock = createBlock("div", [
 				{ name: "class", value: "likes-block" },
 				{ name: "tabindex", value: "0" },
 			]);
@@ -57,9 +59,9 @@ class Video extends Media {
 			]);
 
 			video.append(source, meta);
-			div3.append(likes, svg);
-			div2.append(title, div3);
-			div.append(video, div2);
+			likesBlock.append(likes, svg);
+			informations.append(title, likesBlock);
+			div.append(video, informations);
 			$photographerMediasList.append(div);
 			return div;
 		}

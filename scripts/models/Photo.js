@@ -25,14 +25,16 @@ class Photo extends Media {
 				{ name: "data-id", value: this.id },
 			]);
 
-			const div2 = createBlock("div", [{ name: "class", value: "media-informations" }]);
+			const informations = createBlock("div", [
+				{ name: "class", value: "media-informations" },
+			]);
 			const title = createParagraph(this.title, [
 				{ name: "class", value: "title" },
 				{ name: "tabindex", value: "0" },
 				{ name: "aria-label", value: "Title of the image" },
 			]);
 
-			const div3 = createBlock("div", [
+			const likesBlock = createBlock("div", [
 				{ name: "class", value: "likes-block" },
 				{ name: "tabindex", value: "0" },
 			]);
@@ -49,9 +51,9 @@ class Photo extends Media {
 				{ name: "tabindex", value: "0" },
 			]);
 
-			div3.append(likes, svg);
-			div2.append(title, div3);
-			div.append(img, div2);
+			likesBlock.append(likes, svg);
+			informations.append(title, likesBlock);
+			div.append(img, informations);
 			$photographerMediasList.append(div);
 			return div;
 		}
