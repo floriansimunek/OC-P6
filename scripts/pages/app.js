@@ -24,7 +24,7 @@ class App {
 				this._Photographers[i].createBannerDOM();
 				this._Photographers[i].createMediasCardDOM();
 				this._Photographers[i].displayInformationsDOM();
-				this._Photographers[i].sortMedias("LIKES");
+				this._Photographers[i].sortMedias("likes");
 				this._contactModal.init();
 				this._mediaModal.init();
 				this._$contactForm.addEventListener("submit", (e) => {

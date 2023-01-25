@@ -175,68 +175,43 @@ class Photographer {
 	}
 
 	sortMedias(type) {
-		sort(type);
+		sortElements(type);
 		this._$sorting.addEventListener("change", (e) => {
-			switch (e.target.value) {
-				case "date":
-					type = "DATES";
-					sort(type);
-					break;
-				case "likes":
-					type = "LIKES";
-					sort(type);
-					break;
-				case "title":
-					type = "TITLES";
-					sort(type);
-					break;
-				default:
-					throw "Unknown sorter value";
-			}
+			sortElements(e.target.value);
 		});
 
-		function sort(type) {
+		function sortElements(type) {
 			const $mediasWrapper = document.querySelector(".photograph-medias-list");
 
-			if (type === "DATES") {
-				let $date = document.querySelectorAll("[data-date]");
-				let dateArray = Array.from($date);
-				let dateSorted = dateArray.sort(comparatorDates);
+			const comparators = {
+				date: comparatorDates,
+				title: comparatorTitles,
+				likes: comparatorLikes,
+			};
 
-				dateSorted.forEach((el) => {
-					$mediasWrapper.appendChild(el);
-				});
-			} else if (type === "TITLES") {
-				let $title = document.querySelectorAll("[data-title]");
-				let titleArray = Array.from($title);
-				let titleSorted = titleArray.sort(comparatorTitles);
-
-				titleSorted.forEach((el) => {
-					$mediasWrapper.appendChild(el);
-				});
-			} else if (type === "LIKES") {
-				let $likes = document.querySelectorAll("[data-likes]");
-				let likesArray = Array.from($likes);
-				let likesSorted = likesArray.sort(comparatorLikes);
-
-				likesSorted.forEach((el) => {
-					$mediasWrapper.appendChild(el);
-				});
-			} else {
+			if (!comparators[type]) {
 				throw "Unknown sorting type";
 			}
 
-			function comparatorDates(a, b) {
-				return new Date(b.dataset.date) - new Date(a.dataset.date);
-			}
+			let $elements = document.querySelectorAll(`[data-${type}]`);
+			let elementsArray = Array.from($elements);
+			let elementsSorted = elementsArray.sort(comparators[type]);
 
-			function comparatorTitles(a, b) {
-				return a.dataset.title.localeCompare(b.dataset.title);
-			}
+			elementsSorted.forEach((el) => {
+				$mediasWrapper.appendChild(el);
+			});
+		}
 
-			function comparatorLikes(a, b) {
-				return b.dataset.likes - a.dataset.likes;
-			}
+		function comparatorDates(a, b) {
+			return new Date(b.dataset.date) - new Date(a.dataset.date);
+		}
+
+		function comparatorTitles(a, b) {
+			return a.dataset.title.localeCompare(b.dataset.title);
+		}
+
+		function comparatorLikes(a, b) {
+			return b.dataset.likes - a.dataset.likes;
 		}
 	}
 }
